@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthorizeCxt';
 
 const SigninForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useAuth();
   const navigate = useNavigate();
   
 
@@ -31,8 +33,8 @@ const SigninForm: React.FC = () => {
         // After successful signin, first we will save the token in localStorage
         localStorage.setItem('authToken', data.token);
         localStorage.setItem('userData', JSON.stringify(data.user));
-
-        navigate("/home");
+        login();
+        navigate("/landingpage");
   
       } catch (error) {
         console.error('Sign-in failed:', error);
