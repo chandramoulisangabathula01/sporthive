@@ -1,13 +1,17 @@
 import React from "react";
+import Articles from "./articles";
+import Navbar from "./Navbar";
 
 const LandingPage: React.FC = () => {
     return (
+
         <div>
-            <h1>
-                hello people
-            </h1>
+            <Navbar />
+            <div>
+                <Articles />
+            </div>
         </div>
     )
 }
 
-export default LandingPage ;
+export default LandingPage;

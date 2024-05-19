@@ -14,14 +14,15 @@ const AuthorizeCxt = createContext<AuthContextValue | undefined>(undefined);
 
 export const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => !!localStorage.getItem('authToken'));
+  
+  const logout = useCallback(() => {
+    setIsAuthenticated(false);
+  }, []);
 
   const login = useCallback(() => {
     setIsAuthenticated(true);
   }, []);
 
-  const logout = useCallback(() => {
-    setIsAuthenticated(false);
-  }, []);
 
   const contextValue: AuthContextValue = {
     isAuthenticated,
