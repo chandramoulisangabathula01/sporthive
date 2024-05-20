@@ -1,9 +1,12 @@
+
+
 import React, { useState, useEffect } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import Navbar from '../Navbar';
 import { useLocation } from 'react-router-dom';
 import userAuthCheck from '../../hooks/userAuthCheck';
 import { Article } from '../../context/Articles/types';
+import { Dialog } from '@headlessui/react';
 
 const ArticleList: React.FC = () => {
     const [articles, setArticles] = useState<Article[]>([]);
@@ -12,6 +15,7 @@ const ArticleList: React.FC = () => {
     const location = useLocation();
     const [loading, setLoading] = useState<boolean>(true);
     const ifLog = userAuthCheck();
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -38,6 +42,7 @@ const ArticleList: React.FC = () => {
             const response = await fetch(`${API_ENDPOINT}/articles/${article.id}`);
             const data = await response.json();
             setSelectedArticle(data);
+            setIsModalOpen(true);
             document.body.style.overflow = 'hidden';
         } catch (error) {
             console.error('Error fetching article details:', error);
@@ -46,6 +51,7 @@ const ArticleList: React.FC = () => {
 
     const handleCloseModal = () => {
         setSelectedArticle(null);
+        setIsModalOpen(false);
         document.body.style.overflow = 'auto';
     };
 
@@ -54,8 +60,8 @@ const ArticleList: React.FC = () => {
         : articles;
 
     return (
-        <div className="flex bg-gray-900 text-white min-h-screen">
-            <div className="w-full h-screen overflow-y-auto">
+        <div className="flex bg-gray-900 text-white">
+            <div className={location.pathname === '/landingpage' ? 'w-2/3 h-full overflow-y-auto' : 'flex-1'}>
                 {location.pathname === '/articles' && <Navbar />}
                 <div className="p-6">
                     <h1 className="text-4xl font-extrabold mb-8">Trending News</h1>
@@ -70,16 +76,6 @@ const ArticleList: React.FC = () => {
                             </button>
                         ))}
                         {loading && <p>Loading...</p>}
-                        {ifLog && !loading && (
-                            <>
-                                <button
-                                    onClick={() => setSelectedSport(null)}
-                                    className={`px-6 py-3 rounded-full transition-all duration-300 ease-in-out ${selectedSport === null ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-blue-600'}`}
-                                >
-                                    Your choice
-                                </button>
-                            </>
-                        )}
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {(selectedSport || !ifLog) && filteredArticles.map((article) => (
@@ -99,38 +95,57 @@ const ArticleList: React.FC = () => {
                     </div>
                 </div>
 
-                <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 transition-opacity duration-300 ease-in-out ${selectedArticle ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                    <div className="bg-gray-900 rounded-lg p-6 max-w-2xl mx-auto my-8 max-h-full overflow-y-auto shadow-xl">
+                <Dialog open={isModalOpen} onClose={handleCloseModal} className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black bg-opacity-50">
+                    <Dialog.Panel className="relative bg-white dark:bg-gray-900 dark:text-white rounded-lg p-6 mx-4 md:mx-0 shadow-xl max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
                         {selectedArticle && (
                             <>
-                                <img src={selectedArticle.thumbnail} alt={selectedArticle.title} className="mb-4 rounded-lg w-full h-48 object-cover" />
-                                <h2 className="text-2xl font-bold mb-4">{selectedArticle.title}</h2>
-                                <p className="font-semibold">Ends at: {new Date(selectedArticle.date).toLocaleString()}</p>
-                                {selectedArticle.teams.length > 0 && (
-                                    <div className="flex justify-between items-center mt-2">
-                                        <p className="font-semibold">Teams:</p>
-                                        <div className="flex flex-wrap gap-1">
-                                            {selectedArticle.teams.map((team) => (
-                                                <span key={team.id} className="bg-gray-700 px-2 py-1 rounded-full">{team.name}</span>
-                                            ))}
+                                <div className="md:border-r md:border-gray-700 pr-6">
+                                    <Dialog.Title className="text-xl font-bold  p-2 rounded-lg w-full object-cover">{selectedArticle.sport.name}</Dialog.Title>
+                                    <Dialog.Description className="font-semibold   p-2 rounded-lg w-full  object-cover">Summary: {selectedArticle.summary}</Dialog.Description>
+
+                                    <img src={selectedArticle.thumbnail} alt={selectedArticle.title} className="mb-2 p-2 rounded-lg w-full h-38 object-cover" />
+                                </div>
+                                <div >
+                                    <button
+                                        type="button"
+                                        onClick={handleCloseModal}
+                                        className="absolute top-3 right-3 text-gray-400 hover:text-gray-500"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                                            <path fillRule="evenodd" d="M6.225 4.811a.75.75 0 011.06 0L12 9.525l4.715-4.714a.75.75 0 111.06 1.06L13.06 10.586l4.714 4.714a.75.75 0 11-1.06 1.06L12 11.647l-4.715 4.714a.75.75 0 11-1.06-1.06l4.714-4.714-4.714-4.714a.75.75 0 010-1.06z" clipRule="evenodd" />
+                                        </svg>
+                                    </button>
+                                    <Dialog.Title className="font-semibold mt-10 mb-4">{selectedArticle.content}</Dialog.Title>
+
+                                    <Dialog.Title className="text-2xl font-bold mt-10 mb-4">{selectedArticle.title}</Dialog.Title>
+
+                                    <Dialog.Description className="font-semibold mb-4">Ends at: {new Date(selectedArticle.date).toLocaleString()}</Dialog.Description>
+                                    {selectedArticle.teams.length > 0 && (
+                                        <div className="mt-4">
+                                            <p className="font-semibold">Teams:</p>
+                                            <div className="flex flex-wrap gap-2 mt-2">
+                                                {selectedArticle.teams.map((team) => (
+                                                    <span key={team.id} className="bg-gray-700 px-2 py-1 rounded-full">{team.name}</span>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                                <button
-                                    onClick={handleCloseModal}
-                                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 mt-4 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500"
-                                >
-                                    Close
-                                </button>
+                                    )}
+                                    <button
+                                        onClick={handleCloseModal}
+                                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 mt-6 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
                             </>
                         )}
-                    </div>
-                </div>
+                    </Dialog.Panel>
+                </Dialog>
             </div>
 
             {(location.pathname === '/landingpage' || location.pathname === '/') && (
                 <div className="w-1/3 overflow-y-auto bg-gray-800 text-white hidden md:block">
-
+                    <h1>hello</h1>
                 </div>
             )}
         </div>

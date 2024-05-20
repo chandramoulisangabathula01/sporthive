@@ -8,6 +8,7 @@ export interface Article {
     };
     date: string;
     summary: string;
+    content: string;
     teams: {
       id: number;
       name: string;

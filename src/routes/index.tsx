@@ -5,6 +5,10 @@ import LandingPage from "../pages/LandingPage";
 import NotFound from "../pages/NotFound";
 import Signup from "../pages/signup";
 import Articles from "../pages/articles";
+import Logout from "../pages/logout";
+
+import ProtectedRoute from "./ProtectedRoute";
+import MatchList from "../pages/matches/Matchslist";
 
 
 const ifLog = () => {
@@ -25,6 +29,9 @@ const router = createBrowserRouter([
         path: "/signup", 
         element: <Signup />
     },
+    { path: "/logout", 
+        element: <Logout /> 
+    },
     { 
         path: "/", 
         element: renderLandingComponent()
@@ -35,6 +42,15 @@ const router = createBrowserRouter([
     { path: "/articles", 
         element: <Articles />
     },
+    {
+        path: '/matches',
+        element: (
+          <ProtectedRoute>
+            <MatchList />
+          </ProtectedRoute>
+        ),
+      },
+    
     { path: "*",
         element: <NotFound />
     },
