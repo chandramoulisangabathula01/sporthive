@@ -18,16 +18,16 @@ const Navbar: React.FC = () => {
         <nav className="border-b border-gray-700 px-20 py-3 bg-gray-900 text-white">
             <div className="flex justify-between items-center">
                 <div className="flex items-center">
-                    <Link to="/" className="text-2xl font-bold">
+                    <Link to="/landingpage" className="text-2xl font-bold">
                         Sports Hive
                     </Link>
                 </div>
                 <div className="flex space-x-6 items-center">
 
 
-                    <Link to="/landingpage" className="hover:bg-gray-800 px-3 py-2 rounded transition duration-300">Home</Link>
-                    <Link to="/articles" className="hover:bg-gray-800 px-3 py-2 rounded transition duration-300">Articles</Link>
-                    <Link to="/matches" className="hover:bg-gray-800 px-3 py-2 rounded transition duration-300">Matches</Link>
+                    <Link to="/landingpage" className="hover:bg-gray-800  border border-gray-800 justigy-center item-center px-3 py-2 rounded transition duration-300">Home</Link>
+                    <Link to="/articles" className="hover:bg-gray-800 border border-gray-800 justigy-center item-center px-3 py-2 rounded transition duration-300">Articles</Link>
+                    <Link to="/matches" className="hover:bg-gray-800 border border-gray-800 justigy-center item-center px-3 py-2 rounded transition duration-300">Matches</Link>
                     
 
                     {ifLog ? (
@@ -72,7 +72,7 @@ const Navbar: React.FC = () => {
                     )}
                     <Link
                         to="/logout"
-                        className="block px-4 py-2 text-sm text-white hover:bg-gray-700"
+                        className="block border border-gray-800 justigy-center item-center  px-4 py-2 text-sm text-white hover:bg-gray-700"
                     >
                         Logout
                     </Link>

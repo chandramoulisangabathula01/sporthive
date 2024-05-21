@@ -61,16 +61,18 @@ const ArticleList: React.FC = () => {
 
     return (
         <div className="flex bg-gray-900 text-white">
-            <div className={location.pathname === '/landingpage' ? 'w-2/3 h-full overflow-y-auto' : 'flex-1'}>
+            {/* w-2/3 */}
+            <div className={location.pathname === '/landingpage' ? ' h-full overflow-y-auto' : 'flex-1'}>
                 {location.pathname === '/articles' && <Navbar />}
-                <div className="p-6">
+                <div className="p-6 ">
                     <h1 className="text-4xl font-extrabold mb-8">Trending News</h1>
                     <div className="flex flex-wrap gap-4 mb-8 justify-center">
                         {Array.from(new Set(articles.map((article) => article.sport.name))).map((sport) => (
                             <button
                                 key={sport}
                                 onClick={() => handleSport(sport)}
-                                className={`px-6 py-3 rounded-full transition-all duration-300 ease-in-out ${selectedSport === sport ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-blue-600'}`}
+                                className={`px-6 py-3 rounded-full transition-all duration-300 bg-gray-700 text-white ease-in-out ${selectedSport === sport ? ' text-white' : ' bg-gray-700 text-gray-300 hover:bg-gray-500'}`}
+                                // className={`px-6 mt-5 py-3 rounded-lg font-semibold transition duration-300  text-white  ease-in-out ${selectedSport === sport ? ' text-white' :  'bg-gray-700 text-gray-300 hover:bg-gray-500 '}`}
                             >
                                 {sport}
                             </button>
@@ -85,7 +87,21 @@ const ArticleList: React.FC = () => {
                                     <h2 className="text-xl font-bold mb-2">{article.title}</h2>
                                     <button
                                         onClick={() => handleReadMore(article)}
-                                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="bg-gray-700 hover:bg-gray-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
+                                    >
+                                        Read more
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                        {(selectedSport) || filteredArticles.map((article) => (
+                            <div key={article.id} className="bg-gray-800 rounded-lg p-6 flex flex-col justify-between shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                <img src={article.thumbnail} alt={article.title} className="mb-4 rounded-lg w-full h-48 object-cover" />
+                                <div>
+                                    <h2 className="text-xl font-bold mb-2">{article.title}</h2>
+                                    <button
+                                        onClick={() => handleReadMore(article)}
+                                        className="bg-gray-700 hover:bg-gray-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
                                     >
                                         Read more
                                     </button>
@@ -95,10 +111,13 @@ const ArticleList: React.FC = () => {
                     </div>
                 </div>
 
-                <Dialog open={isModalOpen} onClose={handleCloseModal} className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black bg-opacity-50">
-                    <Dialog.Panel className="relative bg-white dark:bg-gray-900 dark:text-white rounded-lg p-6 mx-4 md:mx-0 shadow-xl max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Dialog open={isModalOpen} onClose={handleCloseModal} className=" ">
+                <div className="fixed inset-0 w-screen overflow-y-auto p-4 inset-0 z-50 items-center justify-center  bg-black bg-opacity-50">
+                <div className="flex min-h-full items-center justify-center">
+                    <Dialog.Panel className="relative bg-gray-500 dark:bg-gray-900 dark:text-white rounded-lg p-6 mx-5 md:mx-0 shadow-xl max-w-4xl grid grid-cols-2 md:grid-cols-2 gap-6">
                         {selectedArticle && (
                             <>
+
                                 <div className="md:border-r md:border-gray-700 pr-6">
                                     <Dialog.Title className="text-xl font-bold  p-2 rounded-lg w-full object-cover">{selectedArticle.sport.name}</Dialog.Title>
                                     <Dialog.Description className="font-semibold   p-2 rounded-lg w-full  object-cover">Summary: {selectedArticle.summary}</Dialog.Description>
@@ -130,24 +149,21 @@ const ArticleList: React.FC = () => {
                                             </div>
                                         </div>
                                     )}
-                                    <button
-                                        onClick={handleCloseModal}
-                                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 mt-6 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    >
-                                        Close
-                                    </button>
+                                    
                                 </div>
                             </>
                         )}
                     </Dialog.Panel>
+                    </div>
+                    </div>
                 </Dialog>
             </div>
 
-            {(location.pathname === '/landingpage' || location.pathname === '/') && (
+            {/* {(location.pathname === '/landingpage' || location.pathname === '/') && (
                 <div className="w-1/3 overflow-y-auto bg-gray-800 text-white hidden md:block">
                     <h1>hello</h1>
                 </div>
-            )}
+            )} */}
         </div>
     );
 };

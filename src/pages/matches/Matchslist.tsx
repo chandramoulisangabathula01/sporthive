@@ -54,9 +54,9 @@ const MatchList: React.FC = () => {
         document.body.style.overflow = 'auto';
     };
 
-    const getFirstNWords = (text: string, wordCount: number): string => {
-        return text.split(' ').slice(0, wordCount).join(' ') + '...';
-    };
+    // const getFirstNWords = (text: string, wordCount: number): string => {
+    //     return text.split(' ').slice(0, wordCount).join(' ') + '...';
+    // };
 
     return (
         <div className="bg-black min-h-screen text-white">
@@ -64,12 +64,14 @@ const MatchList: React.FC = () => {
             <h1 className='text-white text-3xl font-bold flex justify-center py-4 bg-gray-900 rounded-lg shadow-md'>Match List</h1>
             <div className="bg-gray-800 rounded-lg p-6 m-4 shadow-lg">
                 {location.pathname === '/matches' && <LiveMatches />}
-                <div className="flex flex-wrap gap-4 mb-8 justify-center">
+                <div className="flex mt-6 flex-wrap gap-4 mb-8 justify-center">
                     {Array.from(new Set(matches.map((match) => match.sportName))).map((sport) => (
                         <button
                             key={sport}
                             onClick={() => handleSportClick(sport)}
-                            className={`px-6 py-3 rounded-lg font-semibold transition duration-300 ${selectedSport === sport ? 'bg-blue-600 text-white' : 'bg-gray-600 text-gray-200'} hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300`}
+                            // className={`px-6 mt-5 py-3 rounded-lg font-semibold transition duration-300 ${selectedSport === sport ? 'bg-blue-600 text-white' : 'bg-gray-600 text-gray-200'} hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300`}
+                            className={`px-6 py-3 rounded-full transition-all duration-300 bg-gray-700 text-white ease-in-out ${selectedSport === sport ? ' text-white' : ' bg-gray-700 text-gray-300 hover:bg-gray-500'}`}
+
                         >
                             {sport}
                         </button>
@@ -77,18 +79,19 @@ const MatchList: React.FC = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredMatches.map((match) => (
-                        <div key={match.id} className="bg-gray-900 rounded-lg p-6 shadow-md relative border border-gray-700">
+
+                        <div key={match.id} className="bg-gray-900  rounded-lg p-6 shadow-md relative border border-gray-700">
                             {match.isRunning && (
                                 <div className="flex absolute top-0 right-0 p-1 text-red-500 font-bold rounded-full">
-                                    &#x25cf;Live
+                                    Live
                                 </div>
                             )}
                             <h2 className="text-xl font-bold mb-2">{match.sportName}</h2>
                             <h3 className="text-lg font-semibold mb-2">{match.name}</h3>
-                            <p className="text-gray-400">{match.location}</p>
+                            <p className="text-gray-400 mb-4">{match.location}</p>
                             <button
                                 onClick={() => handleReadMore(match.id)}
-                                className="bg-blue-500 text-white px-3 py-1 rounded-md mt-4 hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300"
+                                className="bg-gray-700  hover:bg-gray-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
                             >
                                 Read More
                             </button>
@@ -98,23 +101,36 @@ const MatchList: React.FC = () => {
             </div>
 
             {selectedMatch && (
-                <Dialog open={isModalOpen} onClose={handleCloseModal} className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black bg-opacity-50">
-                    <Dialog.Panel className="relative bg-white dark:bg-gray-900 dark:text-white rounded-lg p-6 mx-4 md:mx-0 shadow-xl max-w-lg">
-                        <button
-                            type="button"
-                            onClick={handleCloseModal}
-                            className="absolute top-4 right-4 text-gray-400 hover:text-gray-500"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                                <path fillRule="evenodd" d="M6.225 4.811a.75.75 0 011.06 0L12 9.525l4.715-4.714a.75.75 0 111.06 1.06L13.06 10.586l4.714 4.714a.75.75 0 11-1.06 1.06L12 11.647l-4.715 4.714a.75.75 0 11-1.06-1.06l4.714-4.714-4.714-4.714a.75.75 0 010-1.06z" clipRule="evenodd" />
-                            </svg>
-                        </button>
-                        <Dialog.Title className="text-2xl font-bold">{selectedMatch.sportName}</Dialog.Title>
-                        <Dialog.Description className="mt-2 text-lg font-semibold">{selectedMatch.name}</Dialog.Description>
-                        <img src={selectedMatch.thumbnail} alt={selectedMatch.name} className="mt-4 w-full h-auto rounded-md" />
-                        <p className="mt-4 text-gray-700 dark:text-gray-300">{getFirstNWords(selectedMatch.story, 80)}</p>
-                        
-                    </Dialog.Panel>
+                <Dialog open={isModalOpen} onClose={handleCloseModal} className="relative z-50 ">
+                    <div className="fixed inset-0 w-screen overflow-y-auto p-4  z-50 items-center justify-center  bg-black bg-opacity-50">
+                        <div className="flex min-h-full items-center justify-center">
+                            {/* <div className="fixed inset-0 w-screen overflow-y-auto p-4 z-50 flex items-center justify-center overflow-y-auto bg-black bg-opacity-50"> */}
+                            {/* <div className="flex min-h-full items-center justify-center"> */}
+                            <Dialog.Panel className="relative bg-gray-500 dark:bg-gray-900 dark:text-white rounded-lg p-6 mx-5 md:mx-0 shadow-xl max-w-4xl grid  gap-6">
+                                <button
+                                    type="button"
+                                    onClick={handleCloseModal}
+                                    className="absolute top-3 right-3 text-gray-400 hover:text-gray-500"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                                        <path fillRule="evenodd" d="M6.225 4.811a.75.75 0 011.06 0L12 9.525l4.715-4.714a.75.75 0 111.06 1.06L13.06 10.586l4.714 4.714a.75.75 0 11-1.06 1.06L12 11.647l-4.715 4.714a.75.75 0 11-1.06-1.06l4.714-4.714-4.714-4.714a.75.75 0 010-1.06z" clipRule="evenodd" />
+                                    </svg>
+                                </button>
+                                <Dialog.Title className="text-2xl font-bold">{selectedMatch.sportName}</Dialog.Title>
+                                <Dialog.Description className="mt-2 text-lg font-semibold">{selectedMatch.name}</Dialog.Description>
+                                <p className="mt-2 text-lg font-semibold">{selectedMatch.location}</p>
+                                
+                                {/* <img src={selectedMatch.thumbnail} alt={selectedMatch.name} className="mt-4 w-full h-auto rounded-md" /> */}
+                                {/* <p className="mt-4 text-gray-700 dark:text-gray-300">{getFirstNWords(selectedMatch.story, 80)}</p> */}
+                                <p className="mt-4 text-gray-700 dark:text-gray-300">{(selectedMatch.story)}</p>
+
+
+                            </Dialog.Panel>
+                            {/* </div> */}
+                            {/* </div> */}
+                        </div>
+                    </div>
+
                 </Dialog>
             )}
         </div>
