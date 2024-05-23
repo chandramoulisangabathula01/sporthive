@@ -9,6 +9,7 @@ import Logout from "../pages/logout";
 
 import ProtectedRoute from "./ProtectedRoute";
 import MatchList from "../pages/matches/Matchslist";
+import TeamAndSportList from "../pages/sports/SportList";
 
 
 const ifLog = () => {
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
     { path: "*",
         element: <NotFound />
     },
+    { path: '/teams', element: <TeamAndSportList /> },
     
 ]);
 

@@ -1,7 +1,11 @@
 export interface Team {
     id: number;
     name: string;
+    country: string;
+    plays: string;
 }
+
+
   
 export interface Match {
     thumbnail: string;
@@ -17,3 +21,7 @@ export interface Match {
     score: { [teamName: string]: string };
     story: string;
 }
+
+
+
+
