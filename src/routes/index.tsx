@@ -6,10 +6,10 @@ import NotFound from "../pages/NotFound";
 import Signup from "../pages/signup";
 import Articles from "../pages/articles";
 import Logout from "../pages/logout";
-
 import ProtectedRoute from "./ProtectedRoute";
 import MatchList from "../pages/matches/Matchslist";
 import TeamAndSportList from "../pages/sports/SportList";
+import UserInfo from "../pages/UserInfo";
 
 
 
@@ -24,40 +24,51 @@ const renderLandingComponent = () => {
 
 const router = createBrowserRouter([
     {
-        path: "/signin", 
+        path: "/signin",
         element: <Signin />
     },
     {
-        path: "/signup", 
+        path: "/signup",
         element: <Signup />
     },
-    { path: "/logout", 
-        element: <Logout /> 
+    {
+        path: "/logout",
+        element: <Logout />
     },
-    { 
-        path: "/", 
+    {
+        path: "/",
         element: renderLandingComponent()
     },
-    { path: "/landingpage", 
+    {
+        path: "/landingpage",
         element: <LandingPage />
     },
-    { path: "/articles", 
+    {
+        path: "/articles",
         element: <Articles />
     },
     {
         path: '/matches',
         element: (
-          <ProtectedRoute>
-            <MatchList />
-          </ProtectedRoute>
+            <ProtectedRoute>
+                <MatchList />
+            </ProtectedRoute>
         ),
-      },
-    
-    { path: "*",
+    },
+    {
+        path: "/user",
+        element: (
+            <ProtectedRoute>
+                <UserInfo />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "*",
         element: <NotFound />
     },
     { path: '/teams', element: <TeamAndSportList /> },
-    
+
 ]);
 
 export default router;
