@@ -4,8 +4,10 @@ import Navbar from '../Navbar';
 import { useLocation } from 'react-router-dom';
 import userAuthCheck from '../../hooks/userAuthCheck';
 import { Article } from '../../context/Articles/types';
+
 import { Dialog } from '@headlessui/react';
-import TeamAndSportList from '../sports/SportList';
+import SportList from '../sports/SportList';
+import ArticlesPreferred from './ArticlesPreferred';
 
 // Define ArticleList functional component
 const ArticleList: React.FC = () => {
@@ -83,8 +85,7 @@ const ArticleList: React.FC = () => {
                                 >
                                     Your News
                                 </button>
-                                {/* Placeholder for future content */}
-                                {!selectedSport}
+                                {/* {!selectedSport && <ArticlesPreferred />}                                 */}
                             </>
                         )}
                         {/* Render buttons for filtering articles by sport */}
@@ -96,6 +97,7 @@ const ArticleList: React.FC = () => {
                             >
                                 {sport}
                             </button>
+                            
                         ))}
                         {/* Loading indicator */}
                         {loading && <p>Loading...</p>}
@@ -186,7 +188,7 @@ const ArticleList: React.FC = () => {
             {/* Sidebar */}
             {(location.pathname === '/landingpage' || location.pathname === '/') && (
                 <div className="w-2/6 p-6 overflow-y-auto bg-gray-900 text-white hidden md:block overflow-y-auto' : 'flex-1 ">
-                    <TeamAndSportList />
+                    <SportList />
                 </div>
             )}
         </div>

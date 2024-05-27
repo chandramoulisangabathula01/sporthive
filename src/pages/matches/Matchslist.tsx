@@ -57,7 +57,7 @@ const MatchList: React.FC = () => {
     
 
     return (
-        <div className="bg-black min-h-screen text-white">
+        <div className="bg-gray-900 min-h-screen text-white">
             {location.pathname === '/matches' && <Navbar />}
             <h1 className='text-white text-3xl font-bold flex justify-center py-4 bg-gray-900 rounded-lg shadow-md'>Match List</h1>
             <div className="bg-gray-800 rounded-lg p-6 m-4 shadow-lg">

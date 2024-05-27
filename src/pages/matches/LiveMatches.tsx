@@ -47,7 +47,7 @@ const LiveMatches: React.FC = () => {
     };
 
     return (
-        <div className="bg-gray-900 pt-5">
+        <div className="bg-gray-900 pt-5 pb-5 ">
             <div className="bg-gray-900 text-white rounded-lg p-4 mx-4 shadow-lg">
                 <div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

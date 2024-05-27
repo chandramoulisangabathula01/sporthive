@@ -9,7 +9,7 @@ const LandingPage: React.FC = () => {
         <div>
             <Navbar />
             <div>
-          <LiveMatches/>
+          <LiveMatches />
         </div>
             <div>
                 <Articles />
