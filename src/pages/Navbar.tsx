@@ -47,6 +47,18 @@ const Navbar: React.FC = () => {
                         Matches
                     </Link>
                     <Link
+                        to="/signin"
+                        className="block border border-gray-800 justify-center items-center px-4 py-3 text-sm text-white hover:bg-gray-700"
+                    >
+                        signin
+                    </Link>
+                    <Link
+                        to="/signup"
+                        className="block border border-gray-800 justify-center items-center px-4 py-3 text-sm text-white hover:bg-gray-700"
+                    >
+                        signout
+                    </Link>
+                    <Link
                         to="/logout"
                         className="block border border-gray-800 justify-center items-center px-4 py-3 text-sm text-white hover:bg-gray-700"
                     >

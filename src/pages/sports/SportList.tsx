@@ -15,7 +15,10 @@ const SportList: React.FC = () => {
   const [selectedSport, setSelectedSport] = useState<string | null>(null);  // State for the selected sport
   const [teams, setTeams] = useState<Team[]>([]);  // State to store teams
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null);  // State for the selected team
+  const [loading, setLoading] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);  // State for modal open/close
+
+  
 
   // Fetch sports data on component mount
   useEffect(() => {
@@ -24,8 +27,10 @@ const SportList: React.FC = () => {
         const response = await fetch(`${API_ENDPOINT}/sports`);
         const data = await response.json();
         setSports(data.sports);
+        setLoading(false);
       } catch (error) {
         console.error('Error while fetching sports:', error);
+        setLoading(false);
       }
     };
 
@@ -34,8 +39,10 @@ const SportList: React.FC = () => {
         const response = await fetch(`${API_ENDPOINT}/teams`);
         const data = await response.json();
         setTeams(data);
+        setLoading(false);
       } catch (error) {
         console.error('Error while fetching teams:', error);
+        setLoading(false);
       }
     };
 
@@ -50,8 +57,10 @@ const SportList: React.FC = () => {
         const response = await fetch(`${API_ENDPOINT}/articles`);
         const data = await response.json();
         setArticles(data);
+        setLoading(false);
       } catch (error) {
         console.error('Error while fetching articles:', error);
+        setLoading(false);
       }
     };
 
@@ -160,6 +169,7 @@ const SportList: React.FC = () => {
 
       <div className='mt-5'>
         <div className='grid gap-8'>
+        {loading && <p>Loading...</p>}
           {specificArticles.map((article) => (
             <div key={article.id} className="bg-gray-800 rounded-lg p-6 flex flex-col justify-between shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
               <h2 className="text-lg font-semibold">{article.title}</h2>

@@ -5,13 +5,13 @@ import useUserPreferences from './SpecificUserPreferences';
 
 const PreferencesPanel: React.FC = () => {
   // State variables
-  const [selectedSports, setSelectedSports] = useState<string[]>([]);
-  const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
-  const [sportsList, setSportsList] = useState<Sport[]>([]);
-  const [teamsList, setTeamsList] = useState<Team[]>([]);
-  const [modalOpen, setModalOpen] = useState<boolean>(true);
-  const [loading, setLoading] = useState<boolean>(true);
   const authToken = localStorage.getItem("authToken");
+  const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
+  const [selectedSports, setSelectedSports] = useState<string[]>([]);
+  const [teamsList, setTeamsList] = useState<Team[]>([]);
+  const [sportsList, setSportsList] = useState<Sport[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [modalOpen, setModalOpen] = useState<boolean>(true);
 
   // Custom hook to fetch user preferences
   const userPreferences = useUserPreferences(authToken);
@@ -69,6 +69,7 @@ const PreferencesPanel: React.FC = () => {
           },
         })
       );
+      userData = JSON.parse(localStorage.getItem('userData') || '{}');
       setModalOpen(false);
       setLoading(false);
     } catch (error) {

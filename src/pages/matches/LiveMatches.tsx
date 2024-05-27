@@ -1,12 +1,12 @@
-
 import React, { useEffect, useState } from "react";
 import { API_ENDPOINT } from "../../config/constants";
-
 import { Match } from '../../context/Matches/types'
+import PreferredMatches from "./MatchesPreferred";
+import userAuthCheck from '../../hooks/userAuthCheck'; // Import custom hook for user authentication check
 
 const LiveMatches: React.FC = () => {
     const [liveMatcheScore, setliveMatcheScore] = useState<Match[]>([]);
-
+    const ifLog = userAuthCheck(); // Use the custom hook to get authentication status
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -46,6 +46,12 @@ const LiveMatches: React.FC = () => {
         }
     };
 
+    // Get user preferences from local storage if user is logged in
+
+    const storedData = localStorage.getItem('userData');
+    const userData = storedData ? JSON.parse(storedData) : {};
+    const selectedSports = ifLog ? userData.preferences?.selectedSports || [] : [];
+
     return (
         <div className="bg-gray-900 pt-5 pb-5 ">
             <div className="bg-gray-900 text-white rounded-lg p-4 mx-4 shadow-lg">
@@ -82,6 +88,7 @@ const LiveMatches: React.FC = () => {
                     </div>
                 </div>
             </div>
+            {ifLog && <PreferredMatches selectedSports={selectedSports} />}
         </div>
     );
 };

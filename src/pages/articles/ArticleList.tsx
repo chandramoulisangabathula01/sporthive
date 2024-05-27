@@ -7,7 +7,7 @@ import { Article } from '../../context/Articles/types';
 
 import { Dialog } from '@headlessui/react';
 import SportList from '../sports/SportList';
-import ArticlesPreferred from './ArticlesPreferred';
+// import ArticlesPreferred from './ArticlesPreferred';
 
 // Define ArticleList functional component
 const ArticleList: React.FC = () => {
@@ -186,7 +186,7 @@ const ArticleList: React.FC = () => {
                 </Dialog>
             </div>
             {/* Sidebar */}
-            {(location.pathname === '/landingpage' || location.pathname === '/') && (
+            {location.pathname === '/landingpage' && (
                 <div className="w-2/6 p-6 overflow-y-auto bg-gray-900 text-white hidden md:block overflow-y-auto' : 'flex-1 ">
                     <SportList />
                 </div>
