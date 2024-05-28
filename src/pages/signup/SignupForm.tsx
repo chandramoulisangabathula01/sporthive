@@ -1,78 +1,3 @@
-
-// import React, { useState } from 'react';
-// import { API_ENDPOINT } from '../../config/constants';
-// import { useNavigate } from 'react-router-dom';
-
-
-// const SignupForm: React.FC = () => {
-//   const [organisationName, setOrganisationName] = useState('');
-//   const [userName, setUserName] = useState('');
-//   const [userEmail, setUserEmail] = useState('');
-//   const [userPassword, setUserPassword] = useState('');
-
-//   const navigate = useNavigate();
-
-//   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-//     event.preventDefault();
-
-//     try {
-//       const response = await fetch(`${API_ENDPOINT}/organisations`, {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ name: organisationName, user_name: userName, email: userEmail, password: userPassword}),
-//       });
-
-//       if (!response.ok) {
-//         throw new Error('Sign-up failed');
-//       }
-//       console.log('Sign-up successful');
-
-//       // extract the response body as JSON data
-//     const data = await response.json();
-
-//     // if successful, save the token in localStorage
-//     localStorage.setItem('authToken', data.token);
-//     localStorage.setItem('userData', JSON.stringify(data.user))
-    
-//     navigate("/landingpage")
-
-//       // Dialogue: After successful signup we have to redirect the user to the secured page. We will do that later.
-//     } catch (error) {
-//       console.error('Sign-up failed:', error);
-//     }
-
-    
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <div>
-//         <label className="block text-gray-700 font-semibold mb-2">Organisation Name:</label>
-//         <input type="text" name="organisationName" id="organisationName" value={organisationName} onChange={(e) => setOrganisationName(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
-//       </div>
-//       <div>
-//         <label className="block text-gray-700 font-semibold mb-2">Your Name:</label>
-//         <input type="text" name="userName" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
-//       </div>
-//       <div>
-//         <label className="block text-gray-700 font-semibold mb-2">Email:</label>
-//         <input type="email" name="userEmail" id="userEmail" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
-//       </div>
-//       <div>
-//         <label className="block text-gray-700 font-semibold mb-2">Password:</label>
-//         <input type="password" name="userPassword" id="userPassword" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
-//       </div>
-//       <button type="submit" className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4">Sign up</button>
-//     </form>
-//   );
-// };
-
-
-
-// export default SignupForm;
-
-
-
 // import React, { useState } from 'react';
 // import { API_ENDPOINT } from '../../config/constants';
 // import { Link, useNavigate } from 'react-router-dom';
@@ -106,29 +31,29 @@
 //       navigate('/landingpage');
 
 //     } catch (error) {
-//       //@ts-ignore
+//         //@ts-ignore
 //       setError(error.message);
 //       console.error('Sign-up failed:', error);
 //     }
 //   };
 
 //   return (
-//     <form onSubmit={handleSubmit}>
+//     <form className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
 //       {error && <div className="text-red-500 mb-4">{error}</div>}
-//       <div>
-//         <label className="block text-gray-700 font-semibold mb-2">Your Name:</label>
-//         <input type="text" name="userName" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+//       <div className="mb-4">
+//         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userName">Your Name:</label>
+//         <input type="text" name="userName" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
 //       </div>
-//       <div>
-//         <label className="block text-gray-700 font-semibold mb-2">Email:</label>
-//         <input type="email" name="userEmail" id="userEmail" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+//       <div className="mb-4">
+//         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userEmail">Email:</label>
+//         <input type="email" name="userEmail" id="userEmail" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
 //       </div>
-//       <div>
-//         <label className="block text-gray-700 font-semibold mb-2">Password:</label>
-//         <input type="password" name="userPassword" id="userPassword" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+//       <div className="mb-6">
+//         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userPassword">Password:</label>
+//         <input type="password" name="userPassword" id="userPassword" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
 //       </div>
-//       <button type="submit" className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4">Sign up</button>
-//       <p className="mt-2 text-center">
+//       <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign up</button>
+//       <p className="mt-4 text-center">
 //         Already have an account? <Link to="/signin" className="text-blue-500">Sign in here</Link>
 //       </p>
 //       <p className="mt-2 text-center">
@@ -141,9 +66,12 @@
 // export default SignupForm;
 
 
+
 import React, { useState } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { Link, useNavigate } from 'react-router-dom';
+// import { useAuth } from '../../context/AuthorizeCxt';
+
 
 const SignupForm: React.FC = () => {
   const [userName, setUserName] = useState('');
@@ -174,36 +102,104 @@ const SignupForm: React.FC = () => {
       navigate('/landingpage');
 
     } catch (error) {
-        //@ts-ignore
+      //@ts-ignore
       setError(error.message);
       console.error('Sign-up failed:', error);
     }
   };
 
   return (
-    <form className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userName">Your Name:</label>
-        <input type="text" name="userName" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    <>
+      <div className="relative min-h-screen flex gap-7 items-center bg-gray-900 lg:justify-end md:justify-center w-full h-full overflow-hidden">
+
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="object-cover w-full h-full absolute top-0 left-0"
+        >
+          <source src="./src/assets/images/SPORT(3).mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className='fixed top-0 z-40 w-full h-[100px] bg-transparent flex justify-between items-center px-5 md:px-10'>
+          <div className='flex flex-row gap-3 items-center'>
+            <h2 className='hidden sm:block text-center text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-gray-500 mt-5'>
+              SportHive
+            </h2>
+          </div>
+
+          <div className='flex relative pt-10 lg:mr-20 sm:mr-1'>
+
+
+            <Link className=" bg-transparent   hover:border-transparent  text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-gray-500 font-semibold rounded-lg  px-5 py-2.5 text-center me-2 mb-2 text-xl" to={'/landingpage'}>HOME</Link>
+            <Link className=" bg-transparent   hover:border-transparent  text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-gray-500 font-semibold rounded-lg  px-5 py-2.5 text-center me-2 mb-2 text-xl" to={'/signin'}>LOGIN</Link>
+          </div>
+
+        </div>
+        <div className='flex w-3/4 p-10'>
+          <div className="items-center justify-center ">
+            <div className="relative z-10 max-w-md w-full px-6 py-8 bg-gradient-to-r from-orange-800 to-gray-800 rounded-lg shadow-md">
+              <h1 className="text-3xl font-bold text-center text-orange-400 mb-8">Sign up</h1>
+              {/* <form onSubmit={handleSubmit}>
+                            <div>
+                                <label className="block text-orange-400 font-semibold mb-2">Email:</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="w-full border font-semibold border-orange-900 bg-orange-800 rounded-md py-2 px-3  leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-orange-400 font-semibold mb-2">Password:</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="w-full border font-semibold border-orange-900 bg-orange-800 rounded-md py-2 px-3 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full border border-gray-800 text-orange-400 hover:bg-gray-800 bg-gradient-to-r from-gray-800 to-orange-800  font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
+                            >
+                                Sign In
+                            </button>
+                        </form> */}
+              <form  onSubmit={handleSubmit}>
+                {error && <div className="text-red-500 mb-4">{error}</div>}
+                <div>
+                  <label className="block text-orange-400 font-semibold mb-2" htmlFor="userName">Your Name:</label>
+                  <input type="text" name="userName" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} className="w-full border font-semibold border-red-900 bg-orange-800 rounded-md py-2 px-3  leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-orange-400 font-semibold mb-2" htmlFor="userEmail">Email:</label>
+                  <input type="email" name="userEmail" id="userEmail" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="w-full border font-semibold border-red-900 bg-orange-800 rounded-md py-2 px-3  leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+                </div>
+                <div className="mb-6">
+                  <label className="block text-orange-400 font-semibold mb-2" htmlFor="userPassword">Password:</label>
+                  <input type="password" name="userPassword" id="userPassword" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} className="w-full border font-semibold border-red-900 bg-orange-800 rounded-md py-2 px-3  leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+                </div>
+                <button type="submit" className="w-full border border-gray-800 text-orange-400 hover:bg-gray-800 bg-gradient-to-r from-gray-800 to-orange-800  font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4">Sign up</button>
+                <p className="mt-4 text-center">
+                  Already have an account? <Link to="/signin" className="text-gray-500">Sign in here</Link>
+                </p>
+                <p className="mt-2 text-center">
+                  Stay Signed out <Link to="/landingpage" className="text-gray-500">Home</Link>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userEmail">Email:</label>
-        <input type="email" name="userEmail" id="userEmail" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-      </div>
-      <div className="mb-6">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userPassword">Password:</label>
-        <input type="password" name="userPassword" id="userPassword" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-      </div>
-      <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign up</button>
-      <p className="mt-4 text-center">
-        Already have an account? <Link to="/signin" className="text-blue-500">Sign in here</Link>
-      </p>
-      <p className="mt-2 text-center">
-        Stay Signed out <Link to="/landingpage" className="text-blue-500">Home</Link>
-      </p>
-    </form>
+    </>
   );
 };
 
 export default SignupForm;
+

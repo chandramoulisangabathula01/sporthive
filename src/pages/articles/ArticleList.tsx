@@ -7,6 +7,7 @@ import { Article } from '../../context/Articles/types';
 
 import { Dialog } from '@headlessui/react';
 import SportList from '../sports/SportList';
+import ArticlesPreferred from './ArticlesPreferred';
 // import ArticlesPreferred from './ArticlesPreferred';
 
 // Define ArticleList functional component
@@ -75,20 +76,6 @@ const ArticleList: React.FC = () => {
                     <h1 className="text-3xl font-extrabold mb-2">Trending News</h1>
                     <div className="flex flex-wrap gap-4 mb-8 justify-center">
                         {/* Conditional rendering based on user authentication */}
-                        {ifLog && (
-                            <>
-                                <button
-                                    onClick={() => setSelectedSport(null)}
-                                    className={`px-6 mt-5 py-3 rounded-full transition-all duration-300 bg-gray-700 text-white ease-in-out ${selectedSport === null ? ' text-white' : ' bg-gray-700 text-gray-300 hover:bg-gray-500'}`}
-
-
-                                >
-                                    Your News
-                                </button>
-                                {/* {!selectedSport && <ArticlesPreferred />}                                 */}
-                            </>
-                        )}
-                        {/* Render buttons for filtering articles by sport */}
                         {Array.from(new Set(articles.map((article) => article.sport.name))).map((sport) => (
                             <button
                                 key={sport}
@@ -99,8 +86,23 @@ const ArticleList: React.FC = () => {
                             </button>
                             
                         ))}
-                        {/* Loading indicator */}
                         {loading && <p>Loading...</p>}
+                        {ifLog && !loading &&(
+                            <>
+                            
+                                <button
+                                    onClick={() => setSelectedSport(null)}
+                                    className={`px-6 mt-5 py-3 rounded-full transition-all duration-300 bg-gray-700 text-white ease-in-out ${selectedSport === null ? ' text-white' : ' bg-gray-700 text-gray-300 hover:bg-gray-500'}`}
+                                >
+                                    Your News
+                                </button>
+                                {!selectedSport && <ArticlesPreferred />}                                
+                            </>
+                        )}
+                        {/* Render buttons for filtering articles by sport */}
+                        
+                        
+                        
                     </div>
                     {/* Render article cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

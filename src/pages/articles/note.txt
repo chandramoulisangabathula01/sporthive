@@ -1,0 +1,92 @@
+// <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        //     <div className="max-w-md w-full px-6 py-8 bg-white rounded-lg shadow-md">
+        //         <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Sign in</h1>
+        //         <form onSubmit={handleSubmit}>
+        //             <div>
+        //                 <label className="block text-gray-700 font-semibold mb-2">Email:</label>
+        //                 <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+        //             </div>
+        //             <div>
+        //                 <label className="block text-gray-700 font-semibold mb-2">Password:</label>
+        //                 <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+        //             </div>
+        //             <button type="submit" className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4">Sign In</button>
+        //         </form>
+        //     </div>
+        // </div>
+
+        <div className="relative min-h-screen flex items-center bg-gray-900 lg:justify-end md:justify-center w-full h-full overflow-hidden object-cover transition-opacity duration-300 pointer  visible opacity-100">
+            <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="object-cover w-full h-full absolute top-0 left-0"
+            >
+                <source src="./src/assets/images/Stylevideo.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+
+
+            {/* <Navbar1 /> */}
+            <div className='fixed top-0 z-[40] w-full h-[100px] bg-transparent flex justify-between items-center px-5 md:px-10'>
+                <div className=' flex flex-row gap-3 items-center'>
+
+
+                    <h1 className='align-center items-center  hidden sm:block text-center flex text-[20px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500 mt-5'>SportHive</h1>
+
+                </div>
+
+
+                <div className='flex relative lg:mr-20 sm:mr-1'>
+
+
+                    {/* <Link className=" bg-transparent   hover:border-transparent  text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500 font-semibold rounded-lg  px-5 py-2.5 text-center me-2 mb-2" href={'/signin'}>Login</Link>
+          <Link className=" bg-transparent   hover:border-transparent  text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500 font-semibold rounded-lg  px-5 py-2.5 text-center me-2 mb-2" href={'/signup'}>Register</Link> */}
+
+
+
+                    {/* <h1 className="relative bg-transparentr4 inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-white-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-black text-white  dark:bg-white-900 rounded-md group-hover:bg-opacity-0">
+              Purple to pink
+          </span>
+        </h1> */}
+                </div>
+
+
+            </div>
+            <div className="flex items-center justify-center bg-gray-900">
+                <div className=" relative z-10 row-start-1 col-start-6 xl:col-start-7 col-span-7 xl:col-span-6">
+                    <div className="max-w-md w-full px-6 py-8 bg-white rounded-lg shadow-md">
+                        <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Sign in</h1>
+                        <form onSubmit={handleSubmit}>
+                            <div>
+                                <label className="block text-gray-700 font-semibold mb-2">Email:</label>
+                                <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+                            </div>
+                            <div>
+                                <label className="block text-gray-700 font-semibold mb-2">Password:</label>
+                                <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
+                            </div>
+                            <button type="submit" className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4">Sign In</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div className='flex hidden sm:block justify-items-start md:pl-40 pb-56 md:pb-20 flex-col gap-5 z-[10] max-w-[1050px]'>
+                <h1 className='text-[50px] text-white font-semibold w-full h-full sm:3xl md:text-4xl lg:text-6xl xl:text-8xl'>
+                    Your Gateway to the Sports World
+                    <span className='text-transparent bg-clip-text pt-3 bg-gradient-to-r from-purple-500 to-cyan-500'>
+                        {" "} SportHive
+                    </span>
+                </h1>
+            </div>
+
+
+            <div className=" relative z-10 row-start-1 col-start-6 xl:col-start-7 col-span-7 xl:col-span-6">
+                <Link to="/articles" className="inline-flex items-center gap-2 rounded-md bg-gray-800 py-3 px-5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+                    Articles
+                </Link>
+            </div>
+        </div>

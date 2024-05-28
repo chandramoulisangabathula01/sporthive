@@ -85,15 +85,21 @@ const ArticlesPreferred: React.FC = () => {
     return (
         <>
             {/* Refresh button */}
-            <button
-                className='text-xl flex items-center font-semibold rounded-lg'
-                onClick={handleRefresh}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
-                    <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z" clip-rule="evenodd" />
-                </svg>
-            </button>
+            <div className='flex flex-wrap items-center mt-3'>
+                <button
+                    className="bg-gray-700 hover:bg-gray-500 text-white   rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
+
+                    onClick={handleRefresh}>
+                    {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-8"><animateTransform attributeName="transform" attributeType="XML" dur="5s" from="360 12 12" repeatCount="indefinite" to="0 12 12" type="rotate"/>
+                    <path fillRule="evenodd" d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z" clipRule="evenodd" />
+                </svg> */}
+
+                    <svg xmlns="http://www.w3.org/2000/svg" className='size-8' width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M19 8l-4 4h3c0 3.31-2.69 6-6 6c-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6c1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4l4-4H6z"><animateTransform attributeName="transform" attributeType="XML" dur="2.5s" from="360 12 12" repeatCount="indefinite" to="0 12 12" type="rotate" /></path></svg>
+                </button>
+            </div>
+
             {/* Loading indicator */}
-            {loading && <p>Loading...</p>}
+            {/* {loading && <p>Loading...</p>} */}
             {/* Render preferred articles */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {preferredArticles.map((article) => (
@@ -110,7 +116,7 @@ const ArticlesPreferred: React.FC = () => {
                     </div>
                 ))}
             </div>
-            
+
             {/* Article details modal */}
             <Dialog open={isModalOpen} onClose={handleCloseModal} className=" ">
                 <div className="fixed inset-0 w-screen overflow-y-auto p-4 inset-0 z-50 items-center justify-center  bg-black bg-opacity-50">
@@ -131,7 +137,10 @@ const ArticlesPreferred: React.FC = () => {
                                             onClick={handleCloseModal}
                                             className="absolute top-3 right-3 text-gray-400 hover:text-gray-500"
                                         >
-                                            Close
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                                                <path fillRule="evenodd" d="M6.225 4.811a.75.75 0 011.06 0L12 9.525l4.715-4.714a.75.75 0 111.06 1.06L13.06 10.586l4.714 4.714a.75.75 0 11-1.06 1.06L12 11.647l-4.715 4.714a.75.75 0 11-1.06-1.06l4.714-4.714-4.714-4.714a.75.75 0 010-1.06z" clipRule="evenodd" />
+                                            </svg>
+
                                         </button>
                                         {/* Additional article details */}
                                         <Dialog.Title className="text-2xl font-bold mt-10 underline mb-4">{selectedArticleReadMore.title}</Dialog.Title>

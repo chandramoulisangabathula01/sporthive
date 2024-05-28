@@ -56,6 +56,8 @@ const LiveMatches: React.FC = () => {
         <div className="bg-gray-900 pt-5 pb-5 ">
             <div className="bg-gray-900 text-white rounded-lg p-4 mx-4 shadow-lg">
                 <div>
+                <h1 className='text-white text-3xl font-bold flex justify-center mb-4 bg-gray-900 rounded-lg shadow-md'>Live Matches:</h1>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {loading && <p className="text-center text-gray-400">Loading...</p>}
                         {liveMatcheScore.map((match: Match) => (
