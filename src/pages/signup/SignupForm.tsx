@@ -1,77 +1,6 @@
-// import React, { useState } from 'react';
-// import { API_ENDPOINT } from '../../config/constants';
-// import { Link, useNavigate } from 'react-router-dom';
-
-// const SignupForm: React.FC = () => {
-//   const [userName, setUserName] = useState('');
-//   const [userEmail, setUserEmail] = useState('');
-//   const [userPassword, setUserPassword] = useState('');
-//   const [error, setError] = useState<string>('');
-//   const navigate = useNavigate();
-
-//   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-//     event.preventDefault();
-
-//     try {
-//       const response = await fetch(`${API_ENDPOINT}/users`, {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ name: userName, email: userEmail, password: userPassword }),
-//       });
-
-//       if (!response.ok) {
-//         const errorData = await response.json();
-//         throw new Error(errorData.message || 'Sign-up failed. Enter proper credentials.');
-//       }
-
-//       const data = await response.json();
-//       localStorage.setItem('authToken', data.auth_token);
-//       localStorage.setItem('userData', JSON.stringify(data.user));
-
-//       navigate('/landingpage');
-
-//     } catch (error) {
-//         //@ts-ignore
-//       setError(error.message);
-//       console.error('Sign-up failed:', error);
-//     }
-//   };
-
-//   return (
-//     <form className="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
-//       {error && <div className="text-red-500 mb-4">{error}</div>}
-//       <div className="mb-4">
-//         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userName">Your Name:</label>
-//         <input type="text" name="userName" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-//       </div>
-//       <div className="mb-4">
-//         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userEmail">Email:</label>
-//         <input type="email" name="userEmail" id="userEmail" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-//       </div>
-//       <div className="mb-6">
-//         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="userPassword">Password:</label>
-//         <input type="password" name="userPassword" id="userPassword" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-//       </div>
-//       <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign up</button>
-//       <p className="mt-4 text-center">
-//         Already have an account? <Link to="/signin" className="text-blue-500">Sign in here</Link>
-//       </p>
-//       <p className="mt-2 text-center">
-//         Stay Signed out <Link to="/landingpage" className="text-blue-500">Home</Link>
-//       </p>
-//     </form>
-//   );
-// };
-
-// export default SignupForm;
-
-
-
 import React, { useState } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { Link, useNavigate } from 'react-router-dom';
-// import { useAuth } from '../../context/AuthorizeCxt';
-
 
 const SignupForm: React.FC = () => {
   const [userName, setUserName] = useState('');
@@ -119,7 +48,7 @@ const SignupForm: React.FC = () => {
           playsInline
           className="object-cover w-full h-full absolute top-0 left-0"
         >
-          <source src="./src/assets/images/SPORT(3).mp4" type="video/mp4" />
+          <source src="./public/SPORT(3).mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className='fixed top-0 z-40 w-full h-[100px] bg-transparent flex justify-between items-center px-5 md:px-10'>
@@ -141,36 +70,7 @@ const SignupForm: React.FC = () => {
           <div className="items-center justify-center ">
             <div className="relative z-10 max-w-md w-full px-6 py-8 bg-gradient-to-r from-orange-800 to-gray-800 rounded-lg shadow-md">
               <h1 className="text-3xl font-bold text-center text-orange-400 mb-8">Sign up</h1>
-              {/* <form onSubmit={handleSubmit}>
-                            <div>
-                                <label className="block text-orange-400 font-semibold mb-2">Email:</label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full border font-semibold border-orange-900 bg-orange-800 rounded-md py-2 px-3  leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-orange-400 font-semibold mb-2">Password:</label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full border font-semibold border-orange-900 bg-orange-800 rounded-md py-2 px-3 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full border border-gray-800 text-orange-400 hover:bg-gray-800 bg-gradient-to-r from-gray-800 to-orange-800  font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
-                            >
-                                Sign In
-                            </button>
-                        </form> */}
+              
               <form  onSubmit={handleSubmit}>
                 {error && <div className="text-red-500 mb-4">{error}</div>}
                 <div>
