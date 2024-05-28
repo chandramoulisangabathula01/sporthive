@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 
-
 interface ChangePasswordProps {
     closeModal: () => void;
 }
