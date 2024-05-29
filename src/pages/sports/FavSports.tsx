@@ -1,15 +1,17 @@
-import React from "react";
-import SportList from "./SportList";
+import React, { Suspense } from "react";
 import ErrorBoundary from "../../components/ErrorBoundary";
+const SportList = React.lazy(() => import("./SportList"));
 
 
 
 const FavSport: React.FC = () => {
     return (
-        <>  
-        <ErrorBoundary>
-            <SportList />
-        </ErrorBoundary>
+        <>
+            <ErrorBoundary>
+                <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
+                    <SportList />
+                </Suspense>
+            </ErrorBoundary>
         </>
     )
 };
