@@ -48,7 +48,7 @@ const SignupForm: React.FC = () => {
           playsInline
           className="object-cover w-full h-full absolute top-0 left-0"
         >
-          <source src="./public/SPORT(3).mp4" type="video/mp4" />
+          <source src="./SPORT(3).mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className='fixed top-0 z-40 w-full h-[100px] bg-transparent flex justify-between items-center px-5 md:px-10'>

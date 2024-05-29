@@ -28,7 +28,7 @@ const UserInfo: React.FC = () => {
             <div className="py-16 bg-gray-800 h-screen">
                 <div className="flex bg-gray-800 rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl border border-gray-700 shadow-lg ">
                     <div className="hidden lg:block lg:w-1/2 bg-cover">
-                        <img src="./public/3dmodel1.png" alt="user details" />
+                        <img src="./3dmodel1.png" alt="user details" />
                     </div>
                     <div className="w-full p-8 lg:w-1/2 bg-gray-700">
                         <div className="items-center justify-center ">
