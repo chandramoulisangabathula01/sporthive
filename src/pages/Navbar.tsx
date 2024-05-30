@@ -70,6 +70,7 @@ const Navbar: React.FC = () => {
                                     anchor="bottom end"
                                     className="w-45 mt-6 origin-top-right rounded-xl border border-white/5 bg-white/5 p-1 text-sm/6 text-white [--anchor-gap:var(--spacing-1)] focus:outline-none"
                                 >
+                                    {ifLog && (
                                     <MenuItem>
                                         <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="size-4 fill-white/30" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.121 17.804A13.937 13.937 0 0 1 12 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 1 1-6 0a3 3 0 0 1 6 0m6 2a9 9 0 1 1-18 0a9 9 0 0 1 18 0"/></svg>
@@ -80,6 +81,8 @@ const Navbar: React.FC = () => {
                                             </Link>
                                         </button>
                                     </MenuItem>
+                                    )}
+                                    {ifLog && (
                                     <MenuItem>
                                         <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="size-4 fill-white/30" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1a5 5 0 0 0-5 5v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5m0 1.9c1.71 0 3.1 1.39 3.1 3.1v2H8.9V6c0-1.71 1.39-3.1 3.1-3.1m.19 7.6c.94 0 1.69.21 2.23.62q.81.63.81 1.68c0 .44-.15.83-.44 1.2c-.29.36-.67.64-1.13.85c-.26.15-.43.3-.52.47c-.09.18-.14.4-.14.68h-2c0-.5.1-.84.29-1.08c.21-.24.55-.52 1.07-.84c.26-.14.47-.32.64-.54c.14-.21.22-.46.22-.74c0-.3-.09-.52-.27-.69c-.18-.18-.45-.26-.76-.26c-.27 0-.49.07-.69.21c-.16.14-.26.35-.26.63H9.27c-.05-.69.23-1.29.78-1.65c.54-.36 1.25-.54 2.14-.54M11 17h2v2h-2z"/></svg>
@@ -90,7 +93,7 @@ const Navbar: React.FC = () => {
                                             </Link>
                                         </button>
                                     </MenuItem>
-                                   
+                                    )}
                                     <div className="my-1 h-px bg-white/5" />
                                     <MenuItem>
                                         <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
@@ -112,6 +115,7 @@ const Navbar: React.FC = () => {
                                             </Link>
                                         </button>
                                     </MenuItem>
+                                    {ifLog && (
                                     <MenuItem>
                                         <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="size-4 fill-white/30" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="#ff0000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1"/></svg>
@@ -122,6 +126,7 @@ const Navbar: React.FC = () => {
                                             </Link>
                                         </button>
                                     </MenuItem>
+                                    )}
                                 </MenuItems>
                             </Transition>
                         </Menu>

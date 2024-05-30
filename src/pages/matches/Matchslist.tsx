@@ -90,7 +90,7 @@ const MatchList: React.FC = () => {
                                 onClick={() => handleReadMore(match.id)}
                                 className="bg-gray-700  hover:bg-gray-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
                             >
-                                Read More
+                                More Details
                             </button>
                         </div>
                     ))}

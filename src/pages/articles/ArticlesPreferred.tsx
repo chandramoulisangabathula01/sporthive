@@ -101,12 +101,12 @@ const ArticlesPreferred: React.FC = () => {
                     <div key={article.id} className='bg-gray-800  rounded-lg p-6 flex flex-col justify-between shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out'>
                         <img src={article.thumbnail} alt={article.title} className='mb-4 rounded-lg w-full h-48 object-cover' />
                         <h2 className='text-xl font-bold mb-2'> {article.title}</h2>
-                        {/* Read more button */}
+                        {/* More Details button */}
                         <button
                             onClick={() => handleReadMore(article)}
                             className="bg-gray-700 hover:bg-gray-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
                         >
-                            Read more
+                            More Details
                         </button>
                     </div>
                 ))}
