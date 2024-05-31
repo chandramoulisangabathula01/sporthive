@@ -22,9 +22,85 @@ SportHive is your comprehensive sports news and live score platform. Whether you
 
 ## Key takeaways from the app
 
-**Landing Page**
+**Landing Page - casual user**
 
-![Imaage of landing page](https://myoctocat.com/assets/images/base-octocat.svg)
+![Image of landing page](https://github.com/chandramoulisangabathula01/sporthive/blob/main/SportHive_images/Casual_User_LandingPage_1.png)
+
+
+**Sign In**
+
+![Image of Sign In](https://github.com/chandramoulisangabathula01/sporthive/blob/main/SportHive_images/Sign_in_page.png)
+
+**Sign Up**
+
+![Image of Sign Up](https://github.com/chandramoulisangabathula01/sporthive/blob/main/SportHive_images/Sign_up_page.png)
+
+
+**Landing Page - Sports Fans**
+
+![Image of landing page Sports Fans](https://github.com/chandramoulisangabathula01/sporthive/blob/main/SportHive_images/LandingPage_After_Signin.png)
+
+**Preferences Dialog**
+
+![Image of Preferences Dialog](https://github.com/chandramoulisangabathula01/sporthive/blob/main/SportHive_images/Preferences_box.png)
+
+**Change Password**
+
+![Image of Change Password](https://github.com/chandramoulisangabathula01/sporthive/blob/main/SportHive_images/ChangePassword_box.png)
+
+## Live Application URL : [SportHive](https://sporthive.netlify.app/)
+## Link to demo video : [SportHive Demo ](https://sporthive.netlify.app/)
+
+## Clone the SportHive :
+```
+git clone https://github.com/chandramoulisangabathula01/sporthive.git
+cd sporthive
+
+```
+
+## Install dependencies
+```
+npm install
+```
+
+## Run the development server
+```
+npm run dev
+```
+
+## Build for production
+```
+npm run build
+```
+
+ ## How to Use
+
+**1.Browse as Guest:** Access the homepage to read articles and view live scores without logging in.
+
+**2.Log In:** Create an account or log in to personalize your dashboard and save your preferences.
+
+**3.Install PWA:** Follow the prompt in your browser to install SportHive on your mobile or desktop device for a seamless experience.
+
+## Contributing
+
+We welcome contributions! To contribute:
+
+> 1.Fork the repository.
+
+> 2.Create a new branch (git checkout -b feature/YourFeature).
+
+> 3.Implement your feature or fix.
+
+> 4.Commit your changes (git commit -m 'Add new feature').
+
+> 5.Push to the branch (git push origin feature/YourFeature).
+
+> 6.Open a pull request.
+
+## Contact
+
+For any questions or feedback, feel free to reach out at [chandramoulisangabathula01@gmail.com].
+
 
     
 
