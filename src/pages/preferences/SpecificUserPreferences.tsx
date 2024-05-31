@@ -1,51 +1,42 @@
 import { useState, useEffect } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 
-// Define the structure of user preferences
-interface UserPreferences {
-  selectedSports: string[];
-  selectedTeams: string[];
+interface Preferences {
+  selectedSports: never[];
+  selectedTeams: never[];
+  sports: string[];
+  teams: string[];
 }
 
-// Custom hook to fetch user preferences
-const useUserPreferences = (authToken: string | null): UserPreferences | null => {
-  // State variable to store user preferences
-  const [userPreferences, setUserPreferences] = useState<UserPreferences | null>(null);
+const useFetchPreferences = (authToken: string | null): Preferences | null => {
+  const [preferences, setPreferences] = useState<Preferences | null>(null);
 
   useEffect(() => {
-    const fetchUserPreferences = async () => {
+    const retrievePreferences = async () => {
       try {
-        // If there's no authentication token, return early
-        if (!authToken) return;
+      if (!authToken) return;
 
-        // Fetch user preferences from the server
-        const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
+        const result = await fetch(`${API_ENDPOINT}/user/preferences`, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
         });
 
-        // If fetching fails, throw an error
-        if (!response.ok) {
-          throw new Error('Failed to fetch user preferences');
+        if (!result.ok) {
+          throw new Error('Unable to load user preferences');
         }
 
-        // Parse response data and update user preferences state
-        const data = await response.json();
-        setUserPreferences(data.preferences);
-
+        const resultData = await result.json();
+        setPreferences(resultData.preferences);
       } catch (error) {
-        // Log error if fetching user preferences fails
-        console.error('Error fetching user preferences:', error);
+        console.error('Failed to fetch preferences:', error);
       }
     };
 
-    // Call the fetchUserPreferences function
-    fetchUserPreferences();
-  }, [authToken]); // Trigger useEffect when authToken changes
+    retrievePreferences();
+  }, [authToken]);
 
-  // Return user preferences
-  return userPreferences;
+  return preferences;
 };
 
-export default useUserPreferences;
+export default useFetchPreferences;

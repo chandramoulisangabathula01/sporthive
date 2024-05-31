@@ -1,44 +1,67 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { Team, Sport } from '../../context/Preferences/types';
 import useUserPreferences from './SpecificUserPreferences';
 
 const PreferencesPanel: React.FC = () => {
-  // State variables
   const authToken = localStorage.getItem("authToken");
-  const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
-  const [selectedSports, setSelectedSports] = useState<string[]>([]);
-  const [teamsList, setTeamsList] = useState<Team[]>([]);
-  const [sportsList, setSportsList] = useState<Sport[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [modalOpen, setModalOpen] = useState<boolean>(true);
+  const [preferences, setPreferences] = useState<{ sports: string[], teams: string[] }>({ sports: [], teams: [] });
+  const [availableOptions, setAvailableOptions] = useState<{ sports: Sport[], teams: Team[] }>({ sports: [], teams: [] });
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(true);
 
-  // Custom hook to fetch user preferences
   const userPreferences = useUserPreferences(authToken);
 
-  // Handle checkbox change event
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target;
-    const value = event.target.value;
+  const fetchOptions = useCallback(async () => {
+    try {
+      const [sportsResponse, teamsResponse] = await Promise.all([
+        fetch(`${API_ENDPOINT}/sports`),
+        fetch(`${API_ENDPOINT}/teams`),
+      ]);
 
-    if (name === 'sport') {
-      if (checked) {
-        setSelectedSports([...selectedSports, value]);
-      } else {
-        setSelectedSports(selectedSports.filter((sport) => sport !== value));
+      if (!sportsResponse.ok || !teamsResponse.ok) {
+        throw new Error('Failed to fetch data');
       }
-    } else if (name === 'team') {
-      if (checked) {
-        setSelectedTeams([...selectedTeams, value]);
-      } else {
-        setSelectedTeams(selectedTeams.filter((team) => team !== value));
-      }
+
+      const sportsData = await sportsResponse.json();
+      const teamsData = await teamsResponse.json();
+
+      setAvailableOptions({ sports: sportsData.sports, teams: teamsData });
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setIsLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    fetchOptions();
+  }, [fetchOptions]);
+
+  useEffect(() => {
+    if (userPreferences) {
+      setPreferences({
+        sports: userPreferences.selectedSports || [],
+        teams: userPreferences.selectedTeams || [],
+      });
+    }
+  }, [userPreferences]);
+
+  const handleCheckboxChange = (type: 'sports' | 'teams', value: string, checked: boolean) => {
+    setPreferences((prevPreferences) => ({
+      ...prevPreferences,
+      [type]: checked
+        ? [...prevPreferences[type], value]
+        : prevPreferences[type].filter((item) => item !== value),
+    }));
   };
 
-  // Submit preferences to the server
   const handleSubmit = async () => {
     try {
+      if (!authToken) {
+        throw new Error('Authentication token is missing or invalid.');
+      }
+  
       const response = await fetch(`${API_ENDPOINT}/user/preferences`, {
         method: 'PATCH',
         headers: {
@@ -47,122 +70,86 @@ const PreferencesPanel: React.FC = () => {
         },
         body: JSON.stringify({
           preferences: {
-            selectedSports,
-            selectedTeams,
-          }
+            selectedSports: preferences.sports,
+            selectedTeams: preferences.teams,
+          },
         }),
       });
-
+  
       if (!response.ok) {
-        throw new Error('Failed to update preferences');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to update preferences');
       }
-
-      // Update preferences in local storage
-      let userData = JSON.parse(localStorage.getItem('userData') || '{}');
+  
       localStorage.setItem(
         'userData',
         JSON.stringify({
-          ...userData,
+          ...JSON.parse(localStorage.getItem('userData') || '{}'),
           preferences: {
-            selectedSports,
-            selectedTeams,
+            selectedSports: preferences.sports,
+            selectedTeams: preferences.teams,
           },
         })
       );
-      userData = JSON.parse(localStorage.getItem('userData') || '{}');
-      setModalOpen(false);
-      setLoading(false);
+  
+      setIsModalVisible(false);
     } catch (error) {
       console.error('Error updating preferences:', error);
-      setLoading(false);
+      // Handle error state, display error message to user, etc.
     }
   };
+    
+  
 
-  // Fetch sports and teams preferences from the server
-  useEffect(() => {
-    if (userPreferences) {
-      setSelectedSports(userPreferences.selectedSports || []);
-      setSelectedTeams(userPreferences.selectedTeams || []);
-    }
-  }, [userPreferences]);
-
-  useEffect(() => {
-    const fetchPreferences = async () => {
-      try {
-        const sportsResponse = await fetch(`${API_ENDPOINT}/sports`);
-        const sportsData = await sportsResponse.json();
-        setSportsList(sportsData.sports);
-
-        const teamsResponse = await fetch(`${API_ENDPOINT}/teams`);
-        const teamsData = await teamsResponse.json();
-        setTeamsList(teamsData);
-
-        if (!sportsResponse.ok || !teamsResponse.ok) {
-          throw new Error('Failed to fetch data');
-        }
-
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchPreferences();
-  }, [userPreferences]);
-
-  // Close modal
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  };
-
-  // JSX rendering
   return (
     <>
-      {modalOpen && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+      {isModalVisible && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-gray-600 text-lg rounded-lg overflow-hidden shadow-xl w-112 max-h-full overflow-y-auto">
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-4">Select Favorites</h2>
               <hr className='border border-black m-1'/>
-              {/* Sports checkboxes */}
               <div className="mb-3 grid grid-cols-3 gap-4">
                 <h3 className="font-bold mb-2 col-span-3 underline">Sports</h3>
-                {loading && <p>Loading...</p>}
-                {sportsList.slice(0, 12).map((sport) => (
-                  <label key={sport.id} className="block">
-                    <input
-                      type="checkbox"
-                      name="sport"
-                      value={sport.name}
-                      checked={selectedSports.includes(sport.name)}
-                      onChange={handleCheckboxChange}
-                      className="mr-2 "
-                    />
-                    {sport.name}
-                  </label>
-                ))}
+                {isLoading ? (
+                  <p>Loading...</p>
+                ) : (
+                  availableOptions.sports.slice(0, 12).map((sport) => (
+                    <label key={sport.id} className="block">
+                      <input
+                        type="checkbox"
+                        name="sport"
+                        value={sport.name}
+                        checked={preferences.sports.includes(sport.name)}
+                        onChange={(e) => handleCheckboxChange('sports', sport.name, e.target.checked)}
+                        className="mr-2"
+                      />
+                      {sport.name}
+                    </label>
+                  ))
+                )}
               </div>
-              {/* Teams checkboxes */}
               <div className="grid grid-cols-3 gap-3">
                 <h3 className="font-bold mb-2 col-span-3 underline">Teams</h3>
-                {loading && <p>Loading...</p>}
-                {teamsList.slice(0, 12).map((team) => (
-                  <label key={team.id} className="block">
-                    <input
-                      type="checkbox"
-                      name="team"
-                      value={team.name}
-                      checked={selectedTeams.includes(team.name)}
-                      onChange={handleCheckboxChange}
-                      className="mr-2 "
-                    />
-                    {team.name}
-                  </label>
-                ))}
+                {isLoading ? (
+                  <p>Loading...</p>
+                ) : (
+                  availableOptions.teams.slice(0, 12).map((team) => (
+                    <label key={team.id} className="block">
+                      <input
+                        type="checkbox"
+                        name="team"
+                        value={team.name}
+                        checked={preferences.teams.includes(team.name)}
+                        onChange={(e) => handleCheckboxChange('teams', team.name, e.target.checked)}
+                        className="mr-2"
+                      />
+                      {team.name}
+                    </label>
+                  ))
+                )}
               </div>
             </div>
-            {/* Buttons */}
             <div className="flex justify-end px-6 pb-6 gap-2">
               <button
                 onClick={handleSubmit}
@@ -171,7 +158,7 @@ const PreferencesPanel: React.FC = () => {
                 Save Preferences
               </button>
               <button
-                onClick={handleCloseModal}
+                onClick={() => setIsModalVisible(false)}
                 className="bg-red-700 hover:bg-red-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
               >
                 Close
