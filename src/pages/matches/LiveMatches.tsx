@@ -3,6 +3,7 @@ import { API_ENDPOINT } from "../../config/constants";
 import { Match } from '../../context/Matches/types'
 import userAuthCheck from '../../hooks/userAuthCheck'; // Import custom hook for user authentication check
 import PreferredMatches from "./MatchesPreferred";
+// import PreferredMatches from "./PreferredMatches"; // Ensure this import path is correct
 
 const CurrentMatches: React.FC = () => {
     const [currentMatches, setCurrentMatches] = useState<Match[]>([]);
@@ -87,9 +88,8 @@ const CurrentMatches: React.FC = () => {
                     ))}
                 </div>
             </div>
-            {/* {isAuthenticated && <FavoriteMatches preferredSports={preferredSports} />} */}
            
-            {ifLog && <PreferredMatches selectedSports={preferredSports} />}
+            {ifLog && <PreferredMatches preferredSports={preferredSports} />}
 
         </div>
     );

@@ -150,7 +150,7 @@ const SportsOverview: React.FC = () => {
             <p>{article.summary}</p>
             <button
               onClick={() => openDialog(article)}
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+              className="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
             >
               More Details
             </button>
@@ -160,7 +160,7 @@ const SportsOverview: React.FC = () => {
 
       <Dialog open={isDialogOpen} onClose={closeModal}>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
-          <div className="bg-gray-800 rounded-lg p-6 max-w-3xl w-full">
+          <div className="relative bg-gray-800 rounded-lg p-6 max-w-3xl w-full">
             {selectedArticleDetails && (
               <>
                 <div className="flex flex-col md:flex-row">
@@ -173,7 +173,7 @@ const SportsOverview: React.FC = () => {
                     <button
                       type="button"
                       onClick={closeModal}
-                      className="absolute top-2 right-2 text-white hover:text-gray-300"
+                      className="absolute top-3 right-3 text-gray-400 hover:text-gray-500"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                         <path fillRule="evenodd" d="M6.225 4.811a.75.75 0 011.06 0L12 9.525l4.715-4.714a.75.75 0 111.06 1.06L13.06 10.586l4.714 4.714a.75.75 0 11-1.06 1.06L12 11.647l-4.715 4.714a.75.75 0 11-1.06-1.06l4.714-4.714-4.714-4.714a.75.75 0 010-1.06z" clipRule="evenodd" />

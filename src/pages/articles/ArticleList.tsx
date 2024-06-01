@@ -122,8 +122,8 @@ const ArticleOverview: React.FC = () => {
                     </div>
                 </div>
                 <Dialog open={modalOpen} onClose={closeModal} className=" ">
-                    <div className="fixed inset-0 w-screen overflow-y-auto p-4 inset-0 z-50 items-center justify-center bg-black bg-opacity-50">
-                        <div className="flex min-h-full items-center justify-center">
+                    <div className="fixed inset-0 w-screen overflow-y-auto p-4 inset-0 z-50 items-center justify-center  bg-black bg-opacity-50">
+                    <div className="flex min-h-full items-center justify-center">
                             <Dialog.Panel className="relative bg-gray-500 dark:bg-gray-900 dark:text-white rounded-lg p-6 mx-5 md:mx-0 shadow-xl max-w-4xl grid grid-cols-2 md:grid-cols-2 gap-6">
                                 {currentArticle && (
                                     <>
@@ -163,6 +163,7 @@ const ArticleOverview: React.FC = () => {
                     </div>
                 </Dialog>
             </div>
+            
             {location.pathname === '/landingpage' && (
                 <div className="w-2/6 p-6 overflow-y-auto bg-gray-900 text-white hidden md:block">
                     <SportList />

@@ -3,10 +3,10 @@ import { API_ENDPOINT } from '../../config/constants';
 import { Match } from '../../context/Matches/types';
 
 interface Props {
-  selectedSports: string[];
+  preferredSports: string[];
 }
 
-const PreferredMatches: React.FC<Props> = ({ selectedSports }) => {
+const PreferredMatches: React.FC<Props> = ({ preferredSports }) => {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -26,7 +26,7 @@ const PreferredMatches: React.FC<Props> = ({ selectedSports }) => {
     fetchMatches();
   }, []);
 
-  const filteredMatches = matches.filter(match => selectedSports.includes(match.sportName));
+  const filteredMatches = matches.filter(match => preferredSports.includes(match.sportName));
 
   return (
     <div className="preferred-matches-container">
@@ -56,7 +56,7 @@ const PreferredMatches: React.FC<Props> = ({ selectedSports }) => {
               </div>
             </div>
           ) : (
-            <p>No preferred matches available.</p>
+            <p></p>
           )}
         </>
       )}

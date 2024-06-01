@@ -62,8 +62,7 @@ const UserInformation: React.FC = () => {
                                     )}
                                 </div>
                                 <button onClick={() => setPasswordModalVisible(true)}
-                                    className="bg-dark hover:bg-medium mt-2 text-light px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-medium"
-                                >Change Password</button>
+                                    className="bg-gray-900 hover:bg-gray-500 mt-2 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"                                >Change Password</button>
                             </div>
                         </div>
                     </div>
