@@ -49,7 +49,7 @@ SportHive is your comprehensive sports news and live score platform. Whether you
 ![Image of Change Password](https://github.com/chandramoulisangabathula01/sporthive/blob/main/SportHive_images/ChangePassword_box.png)
 
 ## Live Application URL : [SportHive](https://sporthive.netlify.app/)
-## Link to demo video : [SportHive Demo ](https://sporthive.netlify.app/)
+## Link to demo video : [SportHive Demo Video ](https://www.youtube.com/watch?v=eYjCeltr1-E)
 
 ## Clone the SportHive :
 ```
