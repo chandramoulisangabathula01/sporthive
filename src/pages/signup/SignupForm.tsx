@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { Link, useNavigate } from 'react-router-dom';
+import process from 'process';
 
 const SignupForm: React.FC = () => {
   const [userName, setUserName] = useState('');
@@ -9,33 +10,62 @@ const SignupForm: React.FC = () => {
   const [error, setError] = useState<string>('');
   const navigate = useNavigate();
 
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const response = await fetch(`${API_ENDPOINT}/users`, {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ name: userName, email: userEmail, password: userPassword }),
+  //     });
+
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       throw new Error(errorData.message || 'Sign-up failed. Enter proper credentials.');
+  //     }
+
+  //     const data = await response.json();
+  //     localStorage.setItem('authToken', data.auth_token);
+  //     localStorage.setItem('userData', JSON.stringify(data.user));
+
+  //     navigate('/landingpage');
+
+  //   } catch (error) {
+  //     //@ts-ignore
+  //     setError(error.message);
+  //     console.error('Sign-up failed:', error);
+  //   }
+  // };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+  
     try {
-      const response = await fetch(`${API_ENDPOINT}/users`, {
+      const response = await fetch(`${process.env.API_ENDPOINT}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: userName, email: userEmail, password: userPassword }),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Sign-up failed. Enter proper credentials.');
+        throw new Error(errorData.message || 'Sign-up failed. Please enter valid credentials.');
       }
-
+  
       const data = await response.json();
       localStorage.setItem('authToken', data.auth_token);
       localStorage.setItem('userData', JSON.stringify(data.user));
-
+  
       navigate('/landingpage');
-
     } catch (error) {
       //@ts-ignore
       setError(error.message);
       console.error('Sign-up failed:', error);
     }
   };
+  
+  
 
   return (
     <>
