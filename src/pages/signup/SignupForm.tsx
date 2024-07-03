@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { API_ENDPOINT } from '../../config/constants';
 import { Link, useNavigate } from 'react-router-dom';
-import process from 'process';
+// import process from 'process';
 
 const SignupForm: React.FC = () => {
   const [userName, setUserName] = useState('');
@@ -42,7 +41,7 @@ const SignupForm: React.FC = () => {
     event.preventDefault();
   
     try {
-      const response = await fetch(`${process.env.API_ENDPOINT}/users`, {
+      const response = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: userName, email: userEmail, password: userPassword }),
@@ -64,6 +63,8 @@ const SignupForm: React.FC = () => {
       console.error('Sign-up failed:', error);
     }
   };
+  
+  
   
   
 
