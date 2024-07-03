@@ -39,10 +39,7 @@ const router = createBrowserRouter([
         path: "/",
         element: renderLandingComponent()
     },
-    {
-        path: "/landingpage",
-        element: <LandingPage />
-    },
+    
     {
         path: "/articles",
         element: <Articles />
@@ -70,5 +67,8 @@ const router = createBrowserRouter([
     { path: '/teams', element: <TeamAndSportList /> },
 
 ]);
-
+export const RoutePaths = {
+    LandingPage: "/landingpage",
+    Dashboard: "/dashboard"
+};
 export default router;
