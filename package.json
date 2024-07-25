@@ -9,7 +9,8 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest"
   },
   "dependencies": {
     "@headlessui/react": "^2.0.3",
@@ -26,7 +27,7 @@
   "devDependencies": {
     "@types/node": "^20.12.12",
     "@types/prop-types": "^15.7.12",
-    "@types/react": "^18.3.2",
+    "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-helmet": "^6.1.11",
     "@vitejs/plugin-react": "^4.2.1",
