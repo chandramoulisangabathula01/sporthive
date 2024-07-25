@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthorizeCxt';
+import { RoutePaths } from '../../routes';
 
 
 const SigninForm: React.FC = () => {
@@ -10,30 +11,41 @@ const SigninForm: React.FC = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-        try {
-            const response = await fetch(`${API_ENDPOINT}/users/sign_in`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
-            });
+    try {
+        const response = await fetch(`${API_ENDPOINT}/users/sign_in`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
 
-            if (!response.ok) {
-                throw new Error('Sign-in failed');
+        if (!response.ok) {
+            if (response.status === 401) {
+                throw new Error('Incorrect email or password');
+            } else {
+                throw new Error('Sign-in failed due to server error');
             }
-
-            const data = await response.json();
-            localStorage.setItem('authToken', data.auth_token);
-            localStorage.setItem('userData', JSON.stringify(data.user));
-            login();
-            navigate("/landingpage");
-
-        } catch (error) {
-            console.error('Sign-in failed:', error);
         }
-    };
+
+        const data = await response.json();
+        localStorage.setItem('authToken', data.auth_token);
+        localStorage.setItem('userData', btoa(JSON.stringify(data.user)));
+        login();
+        navigate(RoutePaths.LandingPage);
+
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error('Sign-in failed:', error.message);
+            alert(error.message);
+        } else {
+            console.error('Sign-in failed:', error);
+            alert('An unexpected error occurred.');
+        }
+    }
+};
+
 
     return (
         <>
