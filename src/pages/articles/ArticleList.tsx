@@ -66,7 +66,11 @@ const ArticleOverview: React.FC = () => {
             <div className={location.pathname === '/landingpage' ? 'w-3/4 h-full overflow-y-auto' : 'flex-1'}>
                 {location.pathname === '/articles' && <Navbar />}
                 <div className="p-6">
+<<<<<<< HEAD
                     <h1  data-testid='cypress-title' className="text-3xl font-extrabold mb-2">Trending News</h1>
+=======
+                    <h1 className="text-3xl font-extrabold mb-2">Trending News</h1>
+>>>>>>> f96304f27f9dc67d10d8b652dc363d72d1b2a726
                     <div className="flex flex-wrap gap-4 mb-8 justify-center">
                         {Array.from(new Set(articleList.map((article) => article.sport.name))).map((sport) => (
                             <button
@@ -82,7 +86,11 @@ const ArticleOverview: React.FC = () => {
                             <>
                                 <button
                                     onClick={() => setCurrentSport(null)}
+<<<<<<< HEAD
                                     className={`px-6 mt-5 py-3 rounded-  transition-all duration-300 bg-gray-700 text-white ease-in-out ${currentSport === null ? ' text-white' : ' bg-gray-700 text-gray-300 hover:bg-gray-500'}`}
+=======
+                                    className={`px-6 mt-5 py-3 rounded-full transition-all duration-300 bg-gray-700 text-white ease-in-out ${currentSport === null ? ' text-white' : ' bg-gray-700 text-gray-300 hover:bg-gray-500'}`}
+>>>>>>> f96304f27f9dc67d10d8b652dc363d72d1b2a726
                                 >
                                     Your News
                                 </button>
@@ -137,9 +145,13 @@ const ArticleOverview: React.FC = () => {
                                                 type="button"
                                                 onClick={closeModal}
                                                 className="absolute top-3 right-3 text-gray-400 hover:text-gray-500"
+<<<<<<< HEAD
                                                
                                             >
                                              Close
+=======
+                                            >
+>>>>>>> f96304f27f9dc67d10d8b652dc363d72d1b2a726
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                                                     <path fillRule="evenodd" d="M6.225 4.811a.75.75 0 011.06 0L12 9.525l4.715-4.714a.75.75 0 111.06 1.06L13.06 10.586l4.714 4.714a.75.75 0 11-1.06 1.06L12 11.647l-4.715 4.714a.75.75 0 11-1.06-1.06l4.714-4.714-4.714-4.714a.75.75 0 010-1.06z" clipRule="evenodd" />
                                                 </svg>

@@ -10,9 +10,13 @@
     "serve": "vite preview",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+<<<<<<< HEAD
     "test": "jest",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
+=======
+    "test": "jest"
+>>>>>>> f96304f27f9dc67d10d8b652dc363d72d1b2a726
   },
   "dependencies": {
     "@headlessui/react": "^2.0.3",
@@ -34,7 +38,10 @@
     "@types/react-helmet": "^6.1.11",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
+<<<<<<< HEAD
     "cypress": "^13.13.2",
+=======
+>>>>>>> f96304f27f9dc67d10d8b652dc363d72d1b2a726
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",

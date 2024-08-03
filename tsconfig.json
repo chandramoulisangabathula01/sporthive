@@ -35,7 +35,11 @@
 
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "jsx": "react-jsx",
+=======
+    "jsx": "react",
+>>>>>>> f96304f27f9dc67d10d8b652dc363d72d1b2a726
 
     "lib": ["ES2020","dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -63,6 +67,11 @@
     /* Type Checking */
     "strict": true,                                      /* Enable all strict type-checking options. */
   },
+<<<<<<< HEAD
   "include": ["cypress", "src"],
   "references": [{ "path": "tsconfig.node.json" }]
+=======
+  "include": ["src"],
+  "exclude": ["node_modules"]
+>>>>>>> f96304f27f9dc67d10d8b652dc363d72d1b2a726
 }
