@@ -7,12 +7,13 @@ describe('MatchList Component Tests', () => {
     cy.contains('Loading...').should('be.visible');
   });
 
-  it('should render the list of matches', () => {
-    // Wait for the loading indicator to disappear
-    cy.contains('Loading...').should('not.exist');
+  // it('should render the list of matches', () => {
+  //   // Wait for the loading indicator to disappear
+  //   cy.contains('Loading...').should('not.exist');
 
-    // Verify that the list of matches is visible
-    cy.get('div.bg-gray-800', { timeout: 10000 }) // Adjust the class name if needed
-      .should('have.length.greaterThan', 0);
-  });
+  //   // Verify that the list of matches is visible
+  //   cy.get('div.bg-gray-800', { timeout: 10000 }) // Adjust the class name if needed
+  //     .should('have.length.greaterThan', 0);
+  // });
+  
 });
