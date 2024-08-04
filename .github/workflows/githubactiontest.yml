@@ -18,13 +18,16 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' 
+          node-version: '20' 
 
       - name: Install dependencies
         run: npm install
 
+<<<<<<< HEAD
       
 
+=======
+>>>>>>> 8d7bcac319eecb385ff61ad83e18d988320c1aab
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
