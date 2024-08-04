@@ -35,7 +35,8 @@
 
 {
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "react-jsx",
+
 
     "lib": ["ES2020","dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -63,6 +64,8 @@
     /* Type Checking */
     "strict": true,                                      /* Enable all strict type-checking options. */
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+
+  "include": ["cypress", "src"],
+  "references": [{ "path": "tsconfig.node.json" }]
+
 }
