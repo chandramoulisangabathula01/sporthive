@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="border-b border-gray-400 px-20 py-6 bg-gray-900 text-white">
+        <nav className="border-b border-gray-500 px-20 py-6 bg-gray-900 text-white">
             <div className="flex justify-between items-center">
                 <div className="flex items-center">
                     <Link to="/landingpage" className="text-4xl font-bold">
