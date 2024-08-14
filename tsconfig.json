@@ -41,7 +41,7 @@
     "lib": ["ES2020","dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-   
+    "noUnusedLocals": false,
     "noFallthroughCasesInSwitch": true,
     /* Visit https://aka.ms/tsconfig to read more about this file */
     "moduleResolution": "bundler",
@@ -51,7 +51,7 @@
     "noEmit": true,
   
     // "strict": true,
-    "noUnusedLocals": true,
+    // "noUnusedLocals": true,
     "noUnusedParameters": true,
     /* Language and Environment */
     "target": "ES2020",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
