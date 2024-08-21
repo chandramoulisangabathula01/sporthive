@@ -1,8 +1,14 @@
 version: '3.8'
+
 services:
   app:
+    # Build the Docker image from the Dockerfile in the current directory
     build: .
+
+    # Map port 5173 on the host to port 5173 in the container
     ports:
       - '5173:5173'
+
+    # Load environment variables from a .env file
     env_file:
       - .env

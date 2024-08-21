@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { Article } from '../../context/Articles/types';
 import { Dialog } from '@headlessui/react';
-
+import { DateAndTime } from '../../components/dateAndTime';
+import { useTranslation } from 'react-i18next';
 const UserPreferredArticles: React.FC = () => {
     // State variables
     const [allArticles, setAllArticles] = useState<Article[]>([]);
@@ -10,7 +11,7 @@ const UserPreferredArticles: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [filteredArticles, setFilteredArticles] = useState<Article[]>([]);
     const [modalVisible, setModalVisible] = useState<boolean>(false);
-
+    const { t, i18n } = useTranslation();
     // Fetch articles from API on component mount
     useEffect(() => {
         const loadArticles = async () => {
@@ -87,13 +88,13 @@ const UserPreferredArticles: React.FC = () => {
             {/* Refresh button */}
             <div className='flex flex-wrap items-center mt-3'>
                 <button
-                    className="bg-gray-700 hover:bg-gray-500 text-white   rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"                    onClick={refreshPreferredArticles}>
+                    className="bg-gray-700 hover:bg-gray-500 text-white   rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"onClick={refreshPreferredArticles}>
                     <svg xmlns="http://www.w3.org/2000/svg" className='h-6 w-6' viewBox="0 0 24 24"><path fill="currentColor" d="M19 8l-4 4h3c0 3.31-2.69 6-6 6c-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6c1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4l4-4H6z"><animateTransform attributeName="transform" attributeType="XML" dur="2.5s" from="360 12 12" repeatCount="indefinite" to="0 12 12" type="rotate" /></path></svg>
                 </button>
             </div>
 
             {/* Loading indicator */}
-            {isLoading && <p>Loading articles...</p>}
+            {isLoading && <p>{t('Loading articles...')}</p>}
 
             {/* Render filtered articles */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -106,7 +107,7 @@ const UserPreferredArticles: React.FC = () => {
                             onClick={() => showArticleDetails(article)}
                             className="bg-gray-700 hover:bg-gray-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
                         >
-                            Read More
+                            {t('Read more')}
                         </button>
                     </div>
                 ))}
@@ -124,10 +125,10 @@ const UserPreferredArticles: React.FC = () => {
                             <img src={currentArticle.thumbnail} alt={currentArticle.title} className="mb-4 rounded-lg w-full h-48 object-cover" />
                             <div>
                                 <p className="text-gray-300">{currentArticle.content}</p>
-                                <p className="mt-4">Ends at: {new Date(currentArticle.date).toLocaleString()}</p>
+                                <p className="mt-4"> {t('Ends at: ')} {DateAndTime(currentArticle.date, i18n.language)}</p>
                                 {currentArticle.teams.length > 0 && (
                                     <div className="mt-4">
-                                        <p className="font-semibold text-gray-300">Teams:</p>
+                                        <p className="font-semibold text-gray-300">{t('Teams')}: </p>
                                         <div className="flex flex-wrap gap-2 mt-2">
                                             {currentArticle.teams.map((team) => (
                                                 <span key={team.id} className="bg-gray-600 px-2 py-1 rounded-full text-gray-200">{team.name}</span>

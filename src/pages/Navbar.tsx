@@ -2,18 +2,34 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import userAuthCheck from '../hooks/userAuthCheck';
 import PreferencesPanel from './preferences/PreferencesScreen';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
+import { useTranslation } from 'react-i18next';
+
 
 
 const Navbar: React.FC = () => {
+    const { i18n } = useTranslation();
+    const { t } = useTranslation();
     const [isPreferencesList, setPreferencesList] = useState(false);
     const ifLog = userAuthCheck();
     const togglePreferencesList = () => {
         setPreferencesList(!isPreferencesList);
+    };
+
+    useEffect(() => {
+        const savedLanguage = localStorage.getItem('language');
+        if (savedLanguage) {
+          i18n.changeLanguage(savedLanguage);
+        }
+    }, [i18n]);
+    
+    const LanguageSwitch = (lang: string) => {
+        i18n.changeLanguage(lang);
+        localStorage.setItem('language', lang);
     };
 
     return (
@@ -27,14 +43,14 @@ const Navbar: React.FC = () => {
                 <div className="flex space-x-6 items-center">
 
                     <Link to="/landingpage" className="inline-flex items-center gap-2 rounded-md bg-gray-800 py-3 px-5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                        Home
+                        {t('Home')}
                     </Link>
                     <Link to="/articles" className="inline-flex items-center gap-2 rounded-md bg-gray-800 py-3 px-5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                        Articles
+                         {t('Articles')}
                     </Link>
                     {ifLog && (
                     <Link to="/matches" className="inline-flex items-center gap-2 rounded-md bg-gray-800 py-3 px-5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                        Matches
+                        {t('Matches')}
                     </Link>
                     )}
                     {ifLog && (
@@ -77,7 +93,7 @@ const Navbar: React.FC = () => {
                                             <Link
                                                 to="/user"
                                             >
-                                                User Details
+                                                 {t('User Details')}
                                             </Link>
                                         </button>
                                     </MenuItem>
@@ -89,7 +105,7 @@ const Navbar: React.FC = () => {
                                             <Link
                                                 to="/user"
                                             >
-                                                Change Password
+                                                {t('Change Password')}
                                             </Link>
                                         </button>
                                     </MenuItem>
@@ -101,19 +117,45 @@ const Navbar: React.FC = () => {
                                             <Link
                                                 to="/signin"
                                             >
-                                                Login
+                                                {t('Login')}
                                             </Link>
 
                                         </button>
                                     </MenuItem>
                                     <MenuItem>
-                                        <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">                                            <svg xmlns="http://www.w3.org/2000/svg" className="size-4 fill-white/30"  width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 1 1-8 0a4 4 0 0 1 8 0M3 20a6 6 0 0 1 12 0v1H3z"/></svg>
+                                        <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"><svg xmlns="http://www.w3.org/2000/svg" className="size-4 fill-white/30"  width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 1 1-8 0a4 4 0 0 1 8 0M3 20a6 6 0 0 1 12 0v1H3z"/></svg>
                                             <Link
                                                 to="/signup"
                                             >
-                                                Signup
+                                                 {t('Signup')}
                                             </Link>
                                         </button>
+                                    </MenuItem>
+                                    <MenuItem>
+                                    <div className="py-1">
+                                    <MenuItem>
+                                        <button
+                                            onClick={() => LanguageSwitch('en')}
+                                            className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                                                English
+                                        </button>
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <button
+                                            onClick={() => LanguageSwitch('es')}
+                                            className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                                                 Español
+                                        </button>
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <button
+                                            onClick={() => LanguageSwitch('ar')}
+                                            className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                                                عربي
+                                        </button>
+                                    </MenuItem>
+                  
+                  </div>
                                     </MenuItem>
                                     {ifLog && (
                                     <MenuItem>
@@ -122,10 +164,12 @@ const Navbar: React.FC = () => {
                                             <Link
                                                 to="/logout"
                                             >
-                                                Logout
+                                                 {t('Logout')}
                                             </Link>
                                         </button>
                                     </MenuItem>
+                                   
+                                   
                                     )}
                                 </MenuItems>
                             </Transition>
@@ -140,10 +184,3 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-
-
-
-
-
-
-

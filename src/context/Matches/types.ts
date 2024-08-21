@@ -8,6 +8,7 @@ export interface Team {
 
   
 export interface Match {
+    date(date: any, language: any): import("react").ReactNode | Iterable<import("react").ReactNode>;
     thumbnail: string;
     id: number;
     name: string;

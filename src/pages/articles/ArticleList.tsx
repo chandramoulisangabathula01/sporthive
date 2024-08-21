@@ -4,11 +4,11 @@ import Navbar from '../Navbar';
 import { useLocation } from 'react-router-dom';
 import userAuthCheck from '../../hooks/userAuthCheck';
 import { Article as ArticleType } from '../../context/Articles/types';
-
+import { useTranslation } from 'react-i18next';
+import { DateAndTime } from '../../components/dateAndTime';
 import { Dialog } from '@headlessui/react';
 import SportList from '../sports/SportList';
 import ArticlesPreferred from './ArticlesPreferred';
-// import PreferredArticles from './PreferredArticles';
 
 const ArticleOverview: React.FC = () => {
     const [articleList, setArticleList] = useState<ArticleType[]>([]);
@@ -18,7 +18,8 @@ const ArticleOverview: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const isLog = userAuthCheck();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-
+    const { t, i18n } = useTranslation();
+    
     useEffect(() => {
         const getArticles = async () => {
             try {
@@ -66,7 +67,7 @@ const ArticleOverview: React.FC = () => {
             <div className={location.pathname === '/landingpage' ? 'w-3/4 h-full overflow-y-auto' : 'flex-1'}>
                 {location.pathname === '/articles' && <Navbar />}
                 <div className="p-6">
-                    <h1 className="text-3xl font-extrabold mb-2">Trending News</h1>
+                    <h1 className="text-3xl font-extrabold mb-2">{t('Trending News')}</h1>
                     <div className="flex flex-wrap gap-4 mb-8 justify-center">
                         {Array.from(new Set(articleList.map((article) => article.sport.name))).map((sport) => (
                             <button
@@ -74,17 +75,17 @@ const ArticleOverview: React.FC = () => {
                                 onClick={() => selectSport(sport)}
                                 className={`px-6 mt-5 py-3 rounded-full transition-all duration-300 bg-gray-700 text-white ease-in-out ${currentSport === sport ? ' text-white' : ' bg-gray-700 text-gray-300 hover:bg-gray-500'}`}
                             >
-                                {sport}
+                                {t(`${sport}`)}
                             </button>
                         ))}
-                        {isLoading && <p>Loading...</p>}
+                        {isLoading && <p>{t('Loading...')}</p>}
                         {isLog && !isLoading && (
                             <>
                                 <button
                                     onClick={() => setCurrentSport(null)}
                                     className={`px-6 mt-5 py-3 rounded-full transition-all duration-300 bg-gray-700 text-white ease-in-out ${currentSport === null ? ' text-white' : ' bg-gray-700 text-gray-300 hover:bg-gray-500'}`}
                                 >
-                                    Your News
+                                    {t('Your News')}
                                 </button>
                                 {!currentSport && <ArticlesPreferred />}
                             </>
@@ -100,7 +101,7 @@ const ArticleOverview: React.FC = () => {
                                         onClick={() => readMore(article)}
                                         className="bg-gray-700 hover:bg-gray-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
                                     >
-                                        Read more
+                                        {t('Read more')}
                                     </button>
                                 </div>
                             </div>
@@ -114,7 +115,7 @@ const ArticleOverview: React.FC = () => {
                                         onClick={() => readMore(article)}
                                         className="bg-gray-700 hover:bg-gray-500 mt-2 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
                                     >
-                                        Read more
+                                        {t('Read more')}
                                     </button>
                                 </div>
                             </div>
@@ -142,15 +143,15 @@ const ArticleOverview: React.FC = () => {
                                                     <path fillRule="evenodd" d="M6.225 4.811a.75.75 0 011.06 0L12 9.525l4.715-4.714a.75.75 0 111.06 1.06L13.06 10.586l4.714 4.714a.75.75 0 11-1.06 1.06L12 11.647l-4.715 4.714a.75.75 0 11-1.06-1.06l4.714-4.714-4.714-4.714a.75.75 0 010-1.06z" clipRule="evenodd" />
                                                 </svg>
                                             </button>
-                                            <Dialog.Title className="text-2xl font-bold mt-10 underline mb-4">{currentArticle.title}</Dialog.Title>
+                                            <Dialog.Title className="text-2xl font-bold mt-10 underline mb-4">{t(`${currentArticle.title}`)}</Dialog.Title>
                                             <Dialog.Title className="font-semibold mt-10 mb-4">{currentArticle.content}</Dialog.Title>
-                                            <Dialog.Description className="font-semibold mb-4">Ends at: {new Date(currentArticle.date).toLocaleString()}</Dialog.Description>
+                                            <Dialog.Description className="font-semibold mb-4">{t('Ends at: ')}: {DateAndTime(currentArticle.date, i18n.language)}</Dialog.Description>
                                             {currentArticle.teams.length > 0 && (
                                                 <div className="mt-4">
-                                                    <p className="font-semibold">Teams:</p>
+                                                    <p className="font-semibold">{t('Teams')}: </p>
                                                     <div className="flex flex-wrap gap-2 mt-2">
                                                         {currentArticle.teams.map((team) => (
-                                                            <span key={team.id} className="bg-gray-700 px-2 py-1 rounded-full">{team.name}</span>
+                                                            <span key={team.id} className="bg-gray-700 px-2 py-1 rounded-full">{t(`${team.name}`)}</span>
                                                         ))}
                                                     </div>
                                                 </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { Team, Sport } from '../../context/Preferences/types';
 import useUserPreferences from './SpecificUserPreferences';
+import { t } from 'i18next';
 
 const PreferencesPanel: React.FC = () => {
   const authToken = localStorage.getItem("authToken");
@@ -107,12 +108,12 @@ const PreferencesPanel: React.FC = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-gray-600 text-lg rounded-lg overflow-hidden shadow-xl w-112 max-h-full overflow-y-auto">
             <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4">Select Favorites</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('Select Favorites')} </h2>
               <hr className='border border-black m-1'/>
               <div className="mb-3 grid grid-cols-3 gap-4">
-                <h3 className="font-bold mb-2 col-span-3 underline">Sports</h3>
+                <h3 className="font-bold mb-2 col-span-3 underline">{t('Sports')}</h3>
                 {isLoading ? (
-                  <p>Loading...</p>
+                  <p>{t('Loading...')}</p>
                 ) : (
                   availableOptions.sports.slice(0, 12).map((sport) => (
                     <label key={sport.id} className="block">
@@ -124,13 +125,13 @@ const PreferencesPanel: React.FC = () => {
                         onChange={(e) => handleCheckboxChange('sports', sport.name, e.target.checked)}
                         className="mr-2"
                       />
-                      {sport.name}
+                      {t(`${sport.name}`)}
                     </label>
                   ))
                 )}
               </div>
               <div className="grid grid-cols-3 gap-3">
-                <h3 className="font-bold mb-2 col-span-3 underline">Teams</h3>
+                <h3 className="font-bold mb-2 col-span-3 underline">{t('Teams')}</h3>
                 {isLoading ? (
                   <p>Loading...</p>
                 ) : (
@@ -144,7 +145,7 @@ const PreferencesPanel: React.FC = () => {
                         onChange={(e) => handleCheckboxChange('teams', team.name, e.target.checked)}
                         className="mr-2"
                       />
-                      {team.name}
+                      {t(`${team.name}`)}
                     </label>
                   ))
                 )}
@@ -155,13 +156,13 @@ const PreferencesPanel: React.FC = () => {
                 onClick={handleSubmit}
                 className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
               >
-                Save Preferences
+                 {t('Save Preferences')}
               </button>
               <button
                 onClick={() => setIsModalVisible(false)}
                 className="bg-red-700 hover:bg-red-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
               >
-                Close
+                 {t('Close')}
               </button>
             </div>
           </div>

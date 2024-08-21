@@ -1,0 +1,101 @@
+{
+    "articles": "artículos",
+    "Articles": "Artículos",
+    "Your News": "Tus Noticias",
+    "Trending News": "Noticias de Tendencia",
+    "Read more": "Leer más",
+    "Loading articles...": "Cargando artículos...",
+    "Teams": "Equipos",
+    "Loading...": "Cargando...",
+
+    "Current Matches:": "Partidos Actuales:",
+    "Live": "En Vivo",
+    "Location:": "Ubicación:",
+    "Scores:": "Puntuaciones:",
+    "Preferred Matches:": "Partidos Preferidos:",
+    "Location: ": "Ubicación: ",
+    "Ends at: ": "Termina a las: ",
+    "Teams:": "Equipos:",
+    "Match List": "Lista de Partidos",
+    "Basketball":"Baloncesto",
+
+    "Password Updated Successfully": "Contraseña Actualizada con Éxito",
+    "Update Password": "Actualizar Contraseña",
+    "Current Password": "Contraseña Actual",
+    "New Password": "Nueva Contraseña",
+    "Cancel": "Cancelar",
+    "Save": "Guardar",
+
+    "Select Favorites": "Seleccionar Favoritos",
+    "Sports": "Deportes",
+    
+    "Save Preferences": "Guardar Preferencias",
+    "Close": "Cerrar",
+
+    "Your browser does not support the video tag": "Tu navegador no soporta la etiqueta de video",
+    "SportHive": "SportHive",
+    
+    "HOME": "INICIO",
+    "REGISTER": "REGISTRAR",
+    "Sign in": "Iniciar sesión",
+    "Email:": "Correo electrónico:",
+    "Password:": "Contraseña:",
+    "Sign In": "Iniciar sesión",
+  
+    "LOGIN": "INICIAR SESIÓN",
+    "Sign up": "Regístrate",
+    "Your Name:": "Tu Nombre:",
+    "Sign in here": "Inicia sesión aquí",
+    "Already have an account?": "¿Ya tienes una cuenta?",
+    "Stay Signed out": "Mantenerse Desconectado",
+
+    "Favorite Teams": "Equipos Favoritos",
+    "Select Sport": "Seleccionar Deporte",
+    "Select Team": "Seleccionar Equipo",
+    "More Details": "Más Detalles",
+
+    "Home":"Inicio",
+    "Matches": "Partidos",
+    "User Details": "Detalles del Usuario",
+    "Change Password": "Cambiar Contraseña",
+    "Login": "Iniciar sesión",
+    "Signup": "Registrarse",
+    "Logout": "Cerrar sesión",
+
+    "404 - Not Found": "404 - No Encontrado",
+    "Page not found": "Página no encontrada",
+    "Sorry, that page can't be found. Maybe the page has moved.": "Lo siento, esa página no se puede encontrar. Tal vez la página se haya movido.",
+    "Back to home": "Volver al inicio",
+
+    "No Preferences selected": "No se han seleccionado preferencias",
+    "Your Preferences:": "Tus Preferencias:",
+    "Name:": "Nombre:",
+    "User Information": "Información del Usuario",
+    "Selected Sports:": "Deportes Seleccionados:",
+    "Selected Teams:": "Equipos Seleccionados:",
+
+    "American Football": "Fútbol Americano",
+    "Rugby": "Rugby",
+    "Field Hockey": "Hockey sobre césped",
+    "Table Tennis": "Tenis de mesa",
+    "Cricket": "Críquet",
+        
+    "Thunderbolts": "Rayo",
+    "Dragonslayers": "Matadragones",
+    "Phoenix Rising": "Ascenso del Fénix",
+    "Avalanche": "Avalancha",
+    "Titans": "Titanes",
+    "Vortex Vipers": "Víboras del Vórtice",
+    "Spectral Shadows": "Sombras Espectrales",
+    "Blitzkrieg": "Guerra Relámpago",
+    "Fury United": "Furia Unida",
+    "Lightning Strikes": "Golpes de Rayo",
+    "Serpents of Fire": "Serpientes de Fuego",
+    "Galaxy Warriors": "Guerreros de la Galaxia"
+
+  
+
+   
+
+      
+}

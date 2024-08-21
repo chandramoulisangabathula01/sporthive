@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { Team, Sport, Article } from '../../context/Sports/types';
 import { Dialog } from '@headlessui/react';
 import Navbar from '../Navbar';
+import { t } from 'i18next';
 
 const SportsOverview: React.FC = () => {
   const location = useLocation();
@@ -114,7 +115,7 @@ const SportsOverview: React.FC = () => {
     <div className="bg-gray-900 min-h-screen p-6 text-white">
       {location.pathname === '/teams' && <Navbar />}
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold">Favorite Teams</h1>
+        <h1 className="text-3xl font-bold">{t('Favorite Teams')}</h1>
       </div>
       <div className="flex justify-center mb-4">
         <select
@@ -122,9 +123,9 @@ const SportsOverview: React.FC = () => {
           onChange={(e) => handleSportChange(e.target.value)}
           className="p-2 border border-gray-300 rounded bg-gray-800 text-white"
         >
-          <option value='' disabled>Select Sport</option>
+          <option value='' disabled>{t('Select Sport')}</option>
           {sportsOptions.map((sport) => (
-            <option key={sport.id} value={sport.name}>{sport.name}</option>
+            <option key={sport.id} value={sport.name}>{t(`${sport.name}`)}</option>
           ))}
         </select>
       </div>
@@ -134,16 +135,16 @@ const SportsOverview: React.FC = () => {
           onChange={(e) => handleTeamChange(e.target.value)}
           className="p-2 border border-gray-300 rounded bg-gray-800 text-white"
         >
-          <option value="" disabled>Select Team</option>
+          <option value="" disabled> {t('Select Team')}</option>
           {teamsOptions
             .filter((team) => team.plays === selectedSportName)
             .map((filteredTeam) => (
-              <option key={filteredTeam.id} value={filteredTeam.name}>{filteredTeam.name}</option>
+              <option key={filteredTeam.id} value={filteredTeam.name}>{t(`${filteredTeam.name}`)}</option>
             ))}
         </select>
       </div>
       <div className=" ">
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <p> {t('Loading...')}</p>}
         {filteredArticles.map((article) => (
           <div key={article.id} className="bg-gray-800 p-4 mt-4 rounded shadow-lg">
             <h2 className="text-xl font-semibold">{article.title}</h2>
@@ -152,7 +153,7 @@ const SportsOverview: React.FC = () => {
               onClick={() => openDialog(article)}
               className="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
             >
-              More Details
+               {t('More Details')}
             </button>
           </div>
         ))}
@@ -163,10 +164,10 @@ const SportsOverview: React.FC = () => {
           <div className="relative bg-gray-800 rounded-lg p-6 max-w-3xl w-full">
             {selectedArticleDetails && (
               <>
-                <div className="flex flex-col md:flex-row">
+                <div className="flex flex-col  md:flex-row">
                   <div className="flex-1 mb-4 md:mb-0 md:mr-4">
                     <Dialog.Title className="text-2xl font-bold">{selectedArticleDetails.sport.name}</Dialog.Title>
-                    <Dialog.Description className="mt-2">{selectedArticleDetails.summary}</Dialog.Description>
+                    <Dialog.Description className="mt-2 ">{selectedArticleDetails.summary}</Dialog.Description>
                     <img src={selectedArticleDetails.thumbnail} alt={selectedArticleDetails.title} className="mt-4 w-full h-64 object-cover rounded-lg" />
                   </div>
                   <div className="flex-1">
@@ -180,14 +181,14 @@ const SportsOverview: React.FC = () => {
                       </svg>
                     </button>
                     <Dialog.Title className="text-2xl font-bold mt-4">{selectedArticleDetails.title}</Dialog.Title>
-                    <Dialog.Description className="mt-2">{selectedArticleDetails.content}</Dialog.Description>
-                    <Dialog.Description className="mt-4 font-semibold">Ends at: {new Date(selectedArticleDetails.date).toLocaleString()}</Dialog.Description>
+                    <Dialog.Description className="mt-2 ">{selectedArticleDetails.content}</Dialog.Description>
+                    <Dialog.Description className="mt-4 font-semibold">{t('Ends at: ')}{new Date(selectedArticleDetails.date).toLocaleString()}</Dialog.Description>
                     {selectedArticleDetails.teams.length > 0 && (
                       <div className="mt-4">
-                        <p className="font-semibold">Teams:</p>
+                        <p className="font-semibold">{t('Teams:')}</p>
                         <div className="flex flex-wrap gap-2 mt-2">
                           {selectedArticleDetails.teams.map((team) => (
-                            <span key={team.id} className="bg-gray-700 px-2 py-1 rounded">{team.name}</span>
+                            <span key={team.id} className="bg-gray-700 px-2 py-1 rounded">{t(`${team.name}`)}</span>
                           ))}
                         </div>
                       </div>

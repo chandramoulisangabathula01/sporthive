@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API_ENDPOINT } from '../../config/constants';
 import { Match } from '../../context/Matches/types';
+import { t } from 'i18next';
 
 interface Props {
   preferredSports: string[];
@@ -44,7 +45,7 @@ const PreferredMatches: React.FC<Props> = ({ preferredSports }) => {
                     <h2 className="match-sport">{match.sportName}</h2>
                     <h3 className="match-name">{match.name}</h3>
                     <p className="match-location">Location: {match.location}</p>
-                    <p className="match-end-time">Ends at: {new Date(match.endsAt).toLocaleString()}</p>
+                    <p className="match-end-time">{t('Ends at: ')} {new Date(match.endsAt).toLocaleString()}</p>
                     <div className="match-teams">
                       <p>Teams:</p>
                       {match.teams.map((team) => (

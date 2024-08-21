@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 import LiveMatches from './LiveMatches';
 import { Match } from '../../context/Matches/types';
 import { Dialog } from '@headlessui/react';
+import { useTranslation } from 'react-i18next';
+import { DateAndTime } from '../../components/dateAndTime';
 
 const MatchList: React.FC = () => {
     const [matches, setMatches] = useState<Match[]>([]);
@@ -13,6 +15,7 @@ const MatchList: React.FC = () => {
     const location = useLocation();
     const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         const fetchMatches = async () => {
@@ -59,7 +62,7 @@ const MatchList: React.FC = () => {
     return (
         <div className="bg-gray-900 min-h-screen text-white">
             {location.pathname === '/matches' && <Navbar />}
-            <h1 className='text-white text-3xl font-bold flex justify-center py-4 bg-gray-900 rounded-lg shadow-md'>Match List</h1>
+            <h1 className='text-white text-3xl font-bold flex justify-center py-4 bg-gray-900 rounded-lg shadow-md'>{t('Match List')}</h1>
             <div className="bg-gray-800 rounded-lg p-6 m-4 shadow-lg">
                 {location.pathname === '/matches' && <LiveMatches />}
                 <div className="flex mt-6 flex-wrap gap-4 mb-8 justify-center">
@@ -70,7 +73,7 @@ const MatchList: React.FC = () => {
                             className={`px-6 py-3 rounded-full transition-all duration-300 bg-gray-700 text-white ease-in-out ${selectedSport === sport ? ' text-white' : ' bg-gray-700 text-gray-300 hover:bg-gray-500'}`}
 
                         >
-                            {sport}
+                            {t(`${sport}`)}
                         </button>
                     ))}
                 </div>
@@ -83,14 +86,14 @@ const MatchList: React.FC = () => {
                                     Live
                                 </div>
                             )}
-                            <h2 className="text-xl font-bold mb-2">{match.sportName}</h2>
-                            <h3 className="text-lg font-semibold mb-2">{match.name}</h3>
-                            <p className="text-gray-400 mb-4">{match.location}</p>
+                            <h2 className="text-xl font-bold mb-2">{t(`${match.sportName}`)}</h2>
+                            <h3 className="text-lg font-semibold mb-2">{t(`${match.name}`)}</h3>
+                            <p className="text-gray-400 mb-4">{t(`${match.sportName}`)}</p>
                             <button
                                 onClick={() => handleReadMore(match.id)}
                                 className="bg-gray-700  hover:bg-gray-500 text-white px-4 py-2 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500"
                             >
-                                Read More
+                                {t('Read more')}
                             </button>
                         </div>
                     ))}
@@ -115,8 +118,6 @@ const MatchList: React.FC = () => {
                                 <Dialog.Title className="text-2xl font-bold">{selectedMatch.sportName}</Dialog.Title>
                                 <Dialog.Description className="mt-2 text-lg font-semibold">{selectedMatch.name}</Dialog.Description>
                                 <p className="mt-2 text-lg font-semibold">{selectedMatch.location}</p>
-                                
-                               
                                 <p className="mt-4 text-gray-700 dark:text-gray-300">{(selectedMatch.story)}</p>
 
 

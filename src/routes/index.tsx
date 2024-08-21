@@ -51,6 +51,12 @@ const router = createBrowserRouter([
             </ProtectedRoute>
         ),
     },
+    
+
+    {
+         path: "/landingpage", element: <LandingPage /> },
+
+    
     {
         path: "/user",
         element: (
