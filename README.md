@@ -100,9 +100,3 @@ We welcome contributions! To contribute:
 ## Contact
 
 For any questions or feedback, feel free to reach out at [chandramoulisangabathula01@gmail.com].
-
-
-    
-
-
-

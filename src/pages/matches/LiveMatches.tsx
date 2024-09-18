@@ -91,9 +91,7 @@ const CurrentMatches: React.FC = () => {
                     ))}
                 </div>
             </div>
-           
             {ifLog && <PreferredMatches preferredSports={preferredSports} />}
-
         </div>
     );
 };

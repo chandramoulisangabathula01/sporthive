@@ -1,71 +1,47 @@
-// {
-//   "compilerOptions": {
-//     "jsx": "react",
-
-//     "lib": ["ES2020","dom", "dom.iterable", "esnext"],
-//     "allowJs": true,
-//     "skipLibCheck": true,
-   
-//     "noFallthroughCasesInSwitch": true,
-//     /* Visit https://aka.ms/tsconfig to read more about this file */
-//     "moduleResolution": "bundler",
-//     "allowImportingTsExtensions": true,
-//     "resolveJsonModule": true,
-//     "isolatedModules": true,
-//     "noEmit": true,
-  
-//     // "strict": true,
-//     "noUnusedLocals": true,
-//     "noUnusedParameters": true,
-//     /* Language and Environment */
-//     "target": "ES2020",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-//     /* Modules */
-//     "module": "ESNext",     
-//     "typeRoots": ["node_modules/@types"],
-//     "types": ["prop-types"],                  
-//     "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
-//     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
-//     /* Type Checking */
-//     "strict": true,                                      /* Enable all strict type-checking options. */
-//   },
-//   "include": ["src"],
-//   "exclude": ["node_modules"]
-// }
-
-
 {
   "compilerOptions": {
+    /* JSX */
     "jsx": "react-jsx",
 
+    /* Libraries */
+    "lib": ["ES2020", "dom", "dom.iterable", "esnext"],
 
-    "lib": ["ES2020","dom", "dom.iterable", "esnext"],
+    /* JavaScript Options */
     "allowJs": true,
     "skipLibCheck": true,
+
+    /* Unused Locals/Parameters */
     "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    
+    /* Switches */
     "noFallthroughCasesInSwitch": true,
-    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Module Resolution */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-  
-    // "strict": true,
-    // "noUnusedLocals": true,
-    "noUnusedParameters": true,
+
     /* Language and Environment */
-    "target": "ES2020",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "target": "ES2020", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+
     /* Modules */
-    "module": "ESNext",     
+    "module": "ESNext",
     "typeRoots": ["node_modules/@types"],
-    "types": ["prop-types"],                  
-    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
-    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "types": ["prop-types"],
+
+    /* Interoperability */
+    "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+
+    /* Casing in File Names */
+    "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
+
     /* Type Checking */
-    "strict": true,                                      /* Enable all strict type-checking options. */
+    "strict": true /* Enable all strict type-checking options. */
   },
 
   "include": ["cypress", "src"],
   "references": [{ "path": "tsconfig.node.json" }]
-
 }
