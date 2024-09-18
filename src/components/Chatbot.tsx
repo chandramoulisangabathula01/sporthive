@@ -54,25 +54,17 @@ const Chatbot: React.FC = () => {
 
   return (
     <div className="fixed bottom-4 right-4 z-50 ">
-      
-      {/* <button
-        onClick={() => setIsChatOpen(!isChatOpen)}
-        className="bg-gray-800 text-white border-2 border-gray-700 rounded-lg px-4 py-2 shadow-lg hover:bg-gray-700 transition-colors "
-      >
-        {isChatOpen ? 'Close' : 'Chat'}
-      </button> */}
       <div className="z-60 flex min-h-[1em] items-center  ">
         <PulsatingButton
           className="bg-red-600"
           onClick={() => setIsChatOpen(!isChatOpen)}
         >
-
           <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
             {isChatOpen ? "X" : "Chat"}
           </span>
         </PulsatingButton>
       </div>
-      
+
       {isChatOpen && (
         <div className="bg-gray-900 border border-gray-800 rounded-lg w-80 max-h-[500px] flex flex-col shadow-lg">
           <div className="flex-1 p-4 overflow-y-auto bg-gray-800 border-b border-gray-700">
