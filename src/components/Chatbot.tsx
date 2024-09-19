@@ -11,6 +11,8 @@ interface ChatMessage {
   sender: "user" | "bot";
 }
 
+// hello world
+
 const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [userInput, setUserInput] = useState("");
